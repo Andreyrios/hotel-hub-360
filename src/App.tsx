@@ -10,17 +10,15 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 function App() {
 
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route element={<ActiveSession />} >
-            <Route path={pathName.inicio} element={<Main />} />
-          </Route>
-          <Route path={pathName.login} element={<Login />} />
-          <Route path='*' element={<p>No se encontró la url</p>} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<ActiveSession />} >
+          <Route path={pathName.inicio} element={<Main />} />
+        </Route>
+        <Route path={pathName.login} element={<Login />} />
+        <Route path='*' element={<p>No se encontró la url</p>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
