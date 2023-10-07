@@ -3,7 +3,7 @@ import { listItemsDashboards } from "../../utils/listItemsToDashboard";
 // Styles
 import styles from "./Main.module.css"
 // Components
-import CardItem from "../HotelsList/components/CardItem/CardItem";
+import CardItem from "./components/CardItem/CardItem";
 
 function Main() {
   return (

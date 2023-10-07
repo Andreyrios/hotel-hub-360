@@ -11,7 +11,7 @@ interface Props {
 
 function CardItem({ item }: Props) {
   return (
-    <Link key={item.icon} to={item.path} className={styles.card}>
+    <Link key={item.id} to={item.path} className={styles.card}>
       <item.icon className={styles.icon} />
       <p>{item.text}</p>
     </Link>

@@ -8,7 +8,7 @@ import { setInfoUser } from '../../../../redux/Actions/userActions';
 import styles from './DropdownUser.module.css'
 
 function DropdownUser() {
-  const userReducer = useAppSelector((state: any) => state.userReducer);
+  const userReducer = useAppSelector((state) => state.userReducer);
   const dispatch = useAppDispatch()
 
   const logOut = () => {

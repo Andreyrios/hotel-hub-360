@@ -1,10 +1,10 @@
 import { actionsName } from '../Actions/ActionsName';
 
-interface User {
+type User = {
   id: number
   name: string
   lastName: string
-}
+} | {}
 
 interface SetInfoUserAction {
   type: typeof actionsName.set_info_user;
