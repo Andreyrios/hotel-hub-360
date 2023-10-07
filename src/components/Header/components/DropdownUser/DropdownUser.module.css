@@ -1,0 +1,10 @@
+.dropdownToggle {
+  border: none;
+  font-family: var(--FONT-BOLD);
+  background: var(--SECONDARY-COLOR);
+}
+
+.dropdownToggle:hover {
+  opacity: 0.9;
+  background: var(--SECONDARY-COLOR);
+}
