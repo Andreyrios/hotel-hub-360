@@ -10,7 +10,7 @@ function Main() {
     <div className={styles.main}>
       <div className={styles.containerList}>
         {listItemsDashboards.map(item =>
-          <CardItem item={item} />
+          <CardItem key={item.id} item={item} />
         )}
       </div>
     </div>

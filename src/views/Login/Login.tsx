@@ -33,9 +33,7 @@ function Login() {
         user: user
       })
     );
-    setTimeout(() => {
-      navigate(pathName.main);
-    }, 1000)
+    navigate(pathName.main);
   }
 
   return (

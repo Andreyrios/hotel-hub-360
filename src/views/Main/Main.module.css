@@ -1,8 +1,9 @@
 .main {
   display: grid;
-  height: 100vh;
+  overflow: auto;
   padding: 0 2rem;
   align-content: center;
+  height: calc(100vh - 122px);
   background: var(--COLOR-BACKGROUND);
 }
 
