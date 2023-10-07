@@ -1,0 +1,11 @@
+.footer {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 4rem;
+  justify-content: space-between;
+  background: var(--PRIMARY-COLOR);
+}
+
+.logo {
+  margin: 0;
+}
