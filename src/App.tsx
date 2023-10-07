@@ -1,25 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// Views
+import Main from "./views/Main/Main";
+import Login from "./views/Login/Login";
+// Utils
+import { pathName } from "./utils/pathName";
+import ActiveSession from "./utils/privateRoutes/activeSession";
+// Libraries
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<ActiveSession />} >
+          <Route path={pathName.inicio} element={<Main />} />
+        </Route>
+        <Route path={pathName.login} element={<Login />} />
+        <Route path='*' element={<p>No se encontró la url</p>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
