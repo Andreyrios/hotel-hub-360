@@ -1,5 +1,5 @@
 // Libraries
-import { FaBeer, FaHotel, FaSwatchbook } from "react-icons/fa"
+import { FaHotel, FaSwatchbook } from "react-icons/fa"
 import { MdBedroomParent } from "react-icons/md"
 // Utils
 import { pathName } from "./pathName"

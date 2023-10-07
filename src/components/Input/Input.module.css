@@ -1,0 +1,38 @@
+.customLabel {
+  width: 100%;
+  margin: 0.5rem 0;
+  text-align: left;
+  color: var(--PRIMARY-COLOR);
+  font-family: var(--FONT-SEMIBOLD);
+}
+
+.containerInput {
+  position: relative;
+  margin: 0 0 1rem 0;
+}
+
+.customInput {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  text-align: center;
+  padding: 8px 40px 8px 40px;
+  color: var(--PRIMARY-COLOR);
+  font-family: var(--FONT-SEMIBOLD);
+  border: 1px solid var(--PRIMARY-COLOR);
+}
+
+.customInput::placeholder {
+  opacity: 0.7;
+  color: var(--PRIMARY-COLOR);
+  font-family: var(--FONT-MEDIUM);
+}
+
+.icon {
+  top: 50%;
+  left: 15px;
+  font-size: 1.3rem;
+  position: absolute;
+  transform: translateY(-50%);
+}

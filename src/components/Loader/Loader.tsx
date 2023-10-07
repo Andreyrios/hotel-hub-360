@@ -1,4 +1,3 @@
-import { useState } from 'react';
 // Styles
 import styles from './Loader.module.css'
 // Libraries

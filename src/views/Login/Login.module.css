@@ -1,0 +1,33 @@
+.main {
+  display: grid;
+  overflow: auto;
+  padding: 0 2rem;
+  align-content: center;
+  height: calc(100vh - 122px);
+  background: var(--COLOR-BACKGROUND);
+}
+
+.login {
+  width: 40%;
+  margin: auto;
+  padding: 2rem 3rem;
+  text-align: center;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0px 0px 80px 5px #ddd;
+}
+
+.icon {
+  font-size: 3rem;
+  color: var(--SECONDARY-COLOR);
+}
+
+.login > h3 {
+  color: var(--PRIMARY-COLOR);
+  font-family: var(--FONT-MEDIUM);
+}
+
+.containerButton {
+  width: 50%;
+  margin: auto;
+}

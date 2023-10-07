@@ -2,5 +2,5 @@ export interface Item {
   id: number
   path: string
   text: string
-  icon: any
+  icon: React.FC<React.SVGProps<SVGSVGElement>>
 }

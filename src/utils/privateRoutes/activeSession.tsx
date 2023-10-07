@@ -6,7 +6,7 @@ import { pathName } from "../pathName";
 
 
 export const ActiveSession = () => {
-  const userReducer = useAppSelector((state: any) => state.userReducer)
+  const userReducer = useAppSelector((state) => state.userReducer)
 
   if (JSON.stringify(userReducer.user) === '{}' || !userReducer.user || userReducer.user === undefined || userReducer.user === null) {
     return <Navigate to={pathName.login} />
