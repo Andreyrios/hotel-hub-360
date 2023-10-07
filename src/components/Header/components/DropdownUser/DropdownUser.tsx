@@ -1,6 +1,10 @@
+// Libraries
 import Dropdown from 'react-bootstrap/Dropdown';
+// Interfaces
 import { useAppDispatch, useAppSelector } from '../../../../interfaces/redux';
+// Redux
 import { setInfoUser } from '../../../../redux/Actions/userActions';
+// Styles
 import styles from './DropdownUser.module.css'
 
 function DropdownUser() {
@@ -15,8 +19,6 @@ function DropdownUser() {
       })
     );
   }
-
-  console.log('userReducer.user', userReducer.user)
 
   return (
     <div>

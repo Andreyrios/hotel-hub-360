@@ -1,7 +1,7 @@
 .dropdownToggle {
-  border: none;
-  font-family: var(--FONT-BOLD);
-  background: var(--SECONDARY-COLOR);
+  border: none !important;
+  font-family: var(--FONT-BOLD) !important;
+  background: var(--SECONDARY-COLOR) !important;
 }
 
 .dropdownToggle:hover {

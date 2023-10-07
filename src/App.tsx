@@ -6,6 +6,7 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 // Components
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import Loader from "./components/Loader/Loader";
 // Views
 import Main from "./views/Main/Main";
 import Login from "./views/Login/Login";
@@ -16,6 +17,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <Loader show={false} />
       <Header />
       <Routes>
         <Route element={<ActiveSession />} >
