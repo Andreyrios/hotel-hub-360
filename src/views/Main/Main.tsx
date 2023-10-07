@@ -1,10 +1,19 @@
-
+// Utils
+import { listItemsDashboards } from "../../utils/listItemsToDashboard";
+// Styles
+import styles from "./Main.module.css"
+// Components
+import CardItem from "../HotelsList/components/CardItem/CardItem";
 
 function Main() {
   return (
-    <h3>
-      Main
-    </h3>
+    <div className={styles.main}>
+      <div className={styles.containerList}>
+        {listItemsDashboards.map(item =>
+          <CardItem item={item} />
+        )}
+      </div>
+    </div>
   );
 }
 

@@ -1,5 +1,8 @@
+
 export const pathName = {
-  inicio: '/',
+  main: '/',
   notFound: '/notFound',
-  login: '/iniciar-sesion'
+  login: '/iniciar-sesion',
+  hotelsList: '/lista-hoteles',
+  bookingList: '/lista-reservas'
 }
