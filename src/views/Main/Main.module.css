@@ -1,0 +1,15 @@
+.main {
+  display: grid;
+  height: 100vh;
+  padding: 0 2rem;
+  align-content: center;
+  background: var(--COLOR-BACKGROUND);
+}
+
+.containerList {
+  display: flex;
+  flex-wrap: wrap;
+  background: white;
+  border-radius: 10px;
+  justify-content: center;
+}

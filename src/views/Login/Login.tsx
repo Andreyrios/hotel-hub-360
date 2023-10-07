@@ -15,7 +15,7 @@ function Login() {
 
   useEffect(() => {
     if (JSON.stringify(userReducer.user) !== '{}') {
-      navigate(pathName.inicio)
+      navigate(pathName.main)
       return
     }
   }, [])
@@ -34,7 +34,7 @@ function Login() {
       })
     );
     setTimeout(() => {
-      navigate(pathName.inicio);
+      navigate(pathName.main);
     }, 1000)
   }
 
