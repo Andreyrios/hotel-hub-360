@@ -2,7 +2,7 @@
 import styles from './CustomButton.module.css'
 
 interface Props {
-  type: 'button' | 'submit' | 'reset'
+  type?: 'button' | 'submit' | 'reset'
   icon?: React.FC<React.SVGProps<SVGSVGElement>>
   textButton: string
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
@@ -11,7 +11,7 @@ interface Props {
 function CustomButton(props: Props) {
 
   return (
-    <button className={styles.customButton}>
+    <button className={styles.customButton} type={props.type} >
       {props.icon && <props.icon className={styles.icon} />}
       {props.textButton}
     </button>
