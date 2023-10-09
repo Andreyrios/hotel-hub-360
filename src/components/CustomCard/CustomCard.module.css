@@ -1,7 +1,12 @@
 .customCard {
   width: 100%;
+  cursor: pointer;
   overflow: hidden;
   position: relative;
+}
+
+.customCard:hover {
+  opacity: 0.9;
 }
 
 .rating {
