@@ -1,0 +1,10 @@
+.mainContainer {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  flex-wrap: wrap;
+  border-radius: 7px;
+  background: white;
+  align-content: flex-start;
+  height: calc(100vh - 185px);
+}

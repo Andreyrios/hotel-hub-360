@@ -41,20 +41,20 @@ function Login() {
   }
 
   const user = {
-    name: 'jhon',
+    name: 'Jhon',
     lastName: 'Doe',
     id: 10
   }
 
   const login = () => {
     setLoading(true)
-    dispatch(
-      setInfoUser({
-        ...userReducer,
-        user: user
-      })
-    );
     setTimeout(() => {
+      dispatch(
+        setInfoUser({
+          ...userReducer,
+          user: user
+        })
+      );
       setLoading(false)
       navigate(pathName.main);
     }, 2000)
