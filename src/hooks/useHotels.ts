@@ -9,6 +9,7 @@ function useHotels() {
   const [hotel, setHotel] = useState<ItemHotel>()
   const [loading, setLoading] = useState(false);
   const [listHotels, setListHotels] = useState<ItemHotel[]>([]);
+  const [isModalDetailHotel, setIsModalDetailHotel] = useState(false);
 
   useEffect(() => {
     apiGetHotelsList();
@@ -38,6 +39,7 @@ function useHotels() {
       const { data, errored } = response;
       if (!errored) {
         setHotel(data);
+        setIsModalDetailHotel(true)
       } else {
         console.error('Error fetching hotel:', errored);
       }
@@ -48,7 +50,7 @@ function useHotels() {
     }
   };
 
-  return { loading, listHotels, apiGetHotel, hotel };
+  return { loading, listHotels, apiGetHotel, hotel, setIsModalDetailHotel, isModalDetailHotel };
 }
 
 export default useHotels;
