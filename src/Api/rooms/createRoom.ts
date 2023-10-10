@@ -3,16 +3,16 @@ import APICallback from "../APICallback";
 // Interfaces
 import { CreateItemHotel } from "../../interfaces/generalInterfaces";
 
-const METHOD = "PUT";
-const SUCCESS_STATUS_CODE = 200;
+const METHOD = "POST";
+const SUCCESS_STATUS_CODE = 201;
 let endPointAPI = settings.endPointServerURL;
 
-function updateHotel(dataToSend: CreateItemHotel, itemId: number) {
-  const endPoint = `/api/hotel/${itemId}`;
-  let UPDATE_HOTEL = endPointAPI + endPoint;
+function createRoom(dataToSend: CreateItemHotel, idHotel: number) {
+  const endPoint = `/api/hotel/${idHotel}/room`;
+  let CREATE_ROOM = endPointAPI + endPoint;
   return APICallback(
     dataToSend,
-    UPDATE_HOTEL,
+    CREATE_ROOM,
     METHOD,
     SUCCESS_STATUS_CODE,
     false,
@@ -25,4 +25,4 @@ function updateHotel(dataToSend: CreateItemHotel, itemId: number) {
   );
 }
 
-export { updateHotel };
+export { createRoom };

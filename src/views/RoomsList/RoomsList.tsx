@@ -1,42 +1,46 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 // Styles
-import styles from "./HotelsList.module.css"
+import styles from "./RoomsList.module.css"
 // Components
 import Loader from "../../components/Loader/Loader";
 import TitleView from "../../components/TitleView/TitleView";
+import CustomCardRoom from "./components/CustomCardRoom/CustomCardRoom";
 import ContainerList from "../../components/ContainerList/ContainerList";
-import CustomCardHotel from "./components/CustomCardHotel/CustomCardHotel";
 import ContainerTitleView from "../../components/ContainerTitleView/ContainerTitleView";
 import ModalCreateEditHotel from "../../components/ModalCreateEditHotel/ModalCreateEditHotel";
 // Libraries
 import { FaPlus } from "react-icons/fa";
 import { Button } from "react-bootstrap";
+import { useLocation } from 'react-router-dom';
 // Custom Hooks
-import useHotels from "../../hooks/useHotels";
+import useRooms from "../../hooks/useRooms";
 // Interfaces
-import { ItemHotel } from "../../interfaces/generalInterfaces";
+import { ItemRoom } from "../../interfaces/generalInterfaces";
 
-function HotelsList() {
+function RoomsList() {
+  const location = useLocation();
+  const idHotelPath = location.state.idHotel;
+
   const {
-    hotel,
+    room,
     loading,
-    listHotels,
-    apiGetHotel,
-    apiUpdateHotel,
-    apiCreateHotel,
-    apiGetHotelsList,
-    isModalCreateHotel,
-    isModalDetailHotel,
-    setIsModalDetailHotel,
-    setIsModalCreateHotel, } = useHotels();
+    listRooms,
+    apiGetRoom,
+    apiUpdateRoom,
+    apiCreateRoom,
+    apiGetRoomsList,
+    isModalCreateRoom,
+    isModalDetailRoom,
+    setIsModalCreateRoom,
+    setIsModalDetailRoom, } = useRooms({ idHotel: idHotelPath });
 
   useEffect(() => {
-    apiGetHotelsList();
+    apiGetRoomsList();
   }, []);
 
   return (
     <div className={styles.main}>
-      {hotel &&
+      {/* {hotel &&
         <ModalCreateEditHotel
           dataHotelProps={hotel}
           show={isModalDetailHotel}
@@ -54,25 +58,25 @@ function HotelsList() {
           apiCreateHotel(dataHotela)
         }}
         onHide={() => setIsModalCreateHotel(false)}
-      />
+      /> */}
       <Loader show={loading} />
       <ContainerTitleView>
-        <TitleView text='Hoteles' />
-        <Button className="m-0" variant="success" onClick={() => setIsModalCreateHotel(true)} >
-          <FaPlus /> Crear Hotel
+        <TitleView text='Habitaciones' />
+        <Button className="m-0" variant="success" onClick={() => setIsModalCreateRoom(true)} >
+          <FaPlus /> Crear Habitación
         </Button>
       </ContainerTitleView>
       <ContainerList>
-        {listHotels.length !== 0 &&
+        {listRooms.length !== 0 &&
           <>
-            {listHotels.map((hotel: ItemHotel) => {
+            {listRooms.map((room: ItemRoom) => {
               return (
-                <CustomCardHotel
-                  key={hotel.id} item={hotel}
-                  onClick={() => apiGetHotel(hotel.id)}
+                <CustomCardRoom
+                  key={room.id} item={room}
+                  onClick={() => apiGetRoom(room.hotel_id, room.id)}
                   onClickIcon={() => {
                     const isAvailableApi = true
-                    apiUpdateHotel(hotel, isAvailableApi)
+                    apiUpdateRoom(room, room.id, isAvailableApi)
                   }}
                 />
               )
@@ -84,4 +88,4 @@ function HotelsList() {
   );
 }
 
-export default HotelsList;
+export default RoomsList;

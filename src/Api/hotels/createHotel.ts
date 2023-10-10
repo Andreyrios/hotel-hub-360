@@ -8,7 +8,7 @@ const SUCCESS_STATUS_CODE = 201;
 let endPointAPI = settings.endPointServerURL;
 
 function createHotel(dataToSend: CreateItemHotel) {
-  const endPoint = `/hotel`;
+  const endPoint = `/api/hotel`;
   let CREATE_HOTEL = endPointAPI + endPoint;
   return APICallback(
     dataToSend,

@@ -13,7 +13,9 @@ import CustomButton from '../CustomButton/CustomButton';
 import ContainerTitleView from '../ContainerTitleView/ContainerTitleView';
 // Utils
 import { dataToCreateHotel } from '../../utils/dataToCreateHotel';
-import useHotels from '../../hooks/useHotels';
+import { Button } from 'react-bootstrap';
+import { pathName } from '../../utils/pathName';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   show: boolean
@@ -26,6 +28,7 @@ interface Props {
 function ModalCreateEditHotel({ show, onHide, title, dataHotelProps, mainClick }: Props) {
   const [dataHotel, setDataHotel] = useState<CreateItemHotel | ItemHotel>(dataHotelProps || dataToCreateHotel)
   const [isEdit, setIsEdit] = useState(dataHotelProps && false)
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (dataHotelProps) {
@@ -72,6 +75,14 @@ function ModalCreateEditHotel({ show, onHide, title, dataHotelProps, mainClick }
           <ContainerTitleView>
             <TitleView text={isEdit ? 'Editar información' : title} />
             <div>
+              {dataHotelProps &&
+                <Button
+                  variant='success'
+                  onClick={() => navigate(pathName.roomsList, { state: { idHotel: dataHotel.id } })}
+                >
+                  Ver habitaciones
+                </Button>
+              }
               {!isEdit && dataHotelProps &&
                 <FaPen className={styles.iconsModal} onClick={() => setIsEdit(true)} />
               }

@@ -23,10 +23,10 @@ function useHotels() {
       if (!errored) {
         setListHotels(data);
       } else {
-        console.error('Error fetching hotels:', errored);
+        console.error('Error fetching Hotel:', errored);
       }
     } catch (error) {
-      console.error('Error fetching hotels:', error);
+      console.error('Error fetching Hotel:', error);
     } finally {
       setLoading(false);
     }
@@ -41,10 +41,10 @@ function useHotels() {
         setHotel(data);
         setIsModalDetailHotel(true)
       } else {
-        console.error('Error fetching hotel:', errored);
+        console.error('Error fetching Hotel:', errored);
       }
     } catch (error) {
-      console.error('Error fetching hotel:', error);
+      console.error('Error fetching Hotel:', error);
     } finally {
       setLoading(false);
     }
@@ -62,10 +62,10 @@ function useHotels() {
         apiGetHotelsList()
         setIsModalDetailHotel(false)
       } else {
-        console.error('Error fetching Put Hotel:', errored);
+        console.error('Error fetching Hotel:', errored);
       }
     } catch (error) {
-      console.error('Error fetching Put Hotel:', error);
+      console.error('Error fetching Hotel:', error);
     } finally {
       setLoading(false);
     }
@@ -80,10 +80,10 @@ function useHotels() {
         apiGetHotelsList()
         setIsModalCreateHotel(false)
       } else {
-        console.error('Error fetching Put Hotel:', errored);
+        console.error('Error fetching Hotel:', errored);
       }
     } catch (error) {
-      console.error('Error fetching Put Hotel:', error);
+      console.error('Error fetching Hotel:', error);
     } finally {
       setLoading(false);
     }
