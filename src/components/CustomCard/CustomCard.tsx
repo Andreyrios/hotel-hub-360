@@ -10,14 +10,15 @@ import { ItemHotel } from '../../interfaces/generalInterfaces';
 interface Props {
   item: ItemHotel
   onClick: () => void
+  onClickIcon: () => void
 }
 
-function CustomCard({ item, onClick }: Props) {
+function CustomCard({ item, onClick, onClickIcon }: Props) {
 
   return (
     <>
       <div className="p-1" style={{ width: '25%' }}>
-        <div className={`${styles.customCard} card`} onClick={onClick}>
+        <div className={`${styles.customCard} card ${!item.available && styles.opacityAvailable}`} onClick={onClick}>
           <div className={styles.rating}>
             {starRating(item.star)}
           </div>
@@ -30,10 +31,10 @@ function CustomCard({ item, onClick }: Props) {
             <p><MdLocationPin /> {item.address}</p>
           </div>
           <div className={styles.buttonSection}>
-            <FaPen className={styles.icon} />
+            {/* <FaPen className={styles.icon} /> */}
             {item.available
-              ? <FaEye className={styles.icon} />
-              : <FaEyeSlash className={styles.icon} />
+              ? <FaEye className={styles.icon} onClick={() => onClickIcon()} />
+              : <FaEyeSlash className={styles.icon} onClick={() => onClickIcon()} />
             }
           </div>
         </div>

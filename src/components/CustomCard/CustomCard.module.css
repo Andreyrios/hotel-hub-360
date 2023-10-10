@@ -9,6 +9,10 @@
   opacity: 0.9;
 }
 
+.opacityAvailable {
+  opacity: 0.5;
+}
+
 .rating {
   right: 5px;
   position: absolute;
