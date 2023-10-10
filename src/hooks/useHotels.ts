@@ -50,7 +50,10 @@ function useHotels() {
     }
   };
 
-  const apiUpdateHotel = async (dataHotel: any) => {
+  const apiUpdateHotel = async (dataHotel: any, isOnlyAvailable?: boolean) => {
+    if (isOnlyAvailable) {
+      dataHotel.available = !dataHotel.available
+    }
     setLoading(true);
     try {
       const response = await updateHotel(dataHotel, dataHotel.id);
