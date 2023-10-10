@@ -22,3 +22,18 @@ export interface CreateItemHotel {
   image: string
   id: number
 }
+
+export interface ItemRoom {
+  image: string
+  number: number
+  type: string
+  description: string
+  created_at: string
+  available: boolean,
+  base_price: string
+  tax: string
+  address: string
+  city: string
+  id: number
+  hotel_id: number
+}

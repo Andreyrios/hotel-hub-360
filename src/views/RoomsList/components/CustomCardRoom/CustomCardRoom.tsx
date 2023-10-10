@@ -1,34 +1,33 @@
 // Libraries
 import { MdLocationPin } from 'react-icons/md';
-import { FaEye, FaEyeSlash, FaPhone } from 'react-icons/fa';
+import { FaDollarSign, FaEye, FaEyeSlash } from 'react-icons/fa';
 // Styles
-import styles from './CustomCard.module.css'
-// Utils
-import { starRating } from '../../utils/renderStars';
-import { ItemHotel } from '../../interfaces/generalInterfaces';
+import styles from './CustomCardRoom.module.css'
+// Interfaces
+import { ItemRoom } from '../../../../interfaces/generalInterfaces';
 
 interface Props {
-  item: ItemHotel
+  item: ItemRoom
   onClick: () => void
   onClickIcon: () => void
 }
 
-function CustomCard({ item, onClick, onClickIcon }: Props) {
+function CustomCardRoom({ item, onClick, onClickIcon }: Props) {
 
   return (
     <>
       <div className="p-1" style={{ width: '25%' }}>
-        <div className={`${styles.customCard} card ${!item.available && styles.opacityAvailable}`} onClick={onClick}>
-          <div className={styles.rating}>
-            {starRating(item.star)}
-          </div>
+        <div
+          onClick={onClick}
+          className={`${styles.customCard} card ${!item.available && styles.opacityAvailable}`}
+        >
           <figure className={styles.figure}>
-            <img className={styles.img} src={item.image} alt="Hotel" />
+            <img className={styles.img} src={item.image} alt={item.type} />
           </figure>
           <div className={styles.InfoCard}>
-            <p className={styles.title}>{item.name}</p>
-            <p><FaPhone /> {item.phone}</p>
-            <p><MdLocationPin /> {item.address}</p>
+            <p className={styles.title}>{item.type} - {item.number}</p>
+            <p><FaDollarSign /> {item.base_price} - {item.tax}</p>
+            <p><MdLocationPin /> {item.address} - {item.city}</p>
           </div>
           <div className={styles.buttonSection}>
             {item.available
@@ -52,4 +51,4 @@ function CustomCard({ item, onClick, onClickIcon }: Props) {
   )
 }
 
-export default CustomCard
+export default CustomCardRoom

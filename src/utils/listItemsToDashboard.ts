@@ -1,6 +1,5 @@
 // Libraries
 import { FaHotel, FaSwatchbook } from "react-icons/fa"
-import { MdBedroomParent } from "react-icons/md"
 // Utils
 import { pathName } from "./pathName"
 // Interfaces
@@ -18,11 +17,5 @@ export const listItemsDashboards: Array<Item> = [
     text: 'RESERVAS',
     icon: FaSwatchbook,
     path: pathName.bookingList
-  },
-  {
-    id: 3,
-    text: 'HABITACIONES',
-    icon: MdBedroomParent,
-    path: pathName.hotelsList
   }
 ]

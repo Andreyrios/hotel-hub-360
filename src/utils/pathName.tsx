@@ -4,5 +4,6 @@ export const pathName = {
   notFound: '/notFound',
   login: '/iniciar-sesion',
   hotelsList: '/lista-hoteles',
-  bookingList: '/lista-reservas'
+  bookingList: '/lista-reservas',
+  roomsList: '/lista-habitaciones'
 }

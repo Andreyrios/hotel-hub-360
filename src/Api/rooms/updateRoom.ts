@@ -7,12 +7,12 @@ const METHOD = "PUT";
 const SUCCESS_STATUS_CODE = 200;
 let endPointAPI = settings.endPointServerURL;
 
-function updateHotel(dataToSend: CreateItemHotel, itemId: number) {
-  const endPoint = `/api/hotel/${itemId}`;
-  let UPDATE_HOTEL = endPointAPI + endPoint;
+function updateRoom(dataToSend: CreateItemHotel, idHotel: number, idRoom: number) {
+  const endPoint = `/api/hotel/${idHotel}/room/${idRoom}`;
+  let UPDATE_ROOM = endPointAPI + endPoint;
   return APICallback(
     dataToSend,
-    UPDATE_HOTEL,
+    UPDATE_ROOM,
     METHOD,
     SUCCESS_STATUS_CODE,
     false,
@@ -25,4 +25,4 @@ function updateHotel(dataToSend: CreateItemHotel, itemId: number) {
   );
 }
 
-export { updateHotel };
+export { updateRoom };

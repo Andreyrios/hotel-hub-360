@@ -12,6 +12,7 @@ import Main from "./views/Main/Main";
 import Login from "./views/Login/Login";
 import HotelsList from "./views/HotelsList/HotelsList";
 import BookingsList from "./views/BookingsList/BookingsList";
+import RoomsList from "./views/RoomsList/RoomsList";
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
           <Route path={pathName.main} element={<Main />} />
           <Route path={pathName.hotelsList} element={<HotelsList />} />
           <Route path={pathName.bookingList} element={<BookingsList />} />
+          <Route path={pathName.roomsList} element={<RoomsList />} />
         </Route>
         <Route path={pathName.login} element={<Login />} />
         <Route path='*' element={<p>No se encontró la url</p>} />
