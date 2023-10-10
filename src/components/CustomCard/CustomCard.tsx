@@ -1,6 +1,6 @@
 // Libraries
 import { MdLocationPin } from 'react-icons/md';
-import { FaEye, FaEyeSlash, FaPen, FaPhone } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaPhone } from 'react-icons/fa';
 // Styles
 import styles from './CustomCard.module.css'
 // Utils
@@ -31,10 +31,19 @@ function CustomCard({ item, onClick, onClickIcon }: Props) {
             <p><MdLocationPin /> {item.address}</p>
           </div>
           <div className={styles.buttonSection}>
-            {/* <FaPen className={styles.icon} /> */}
             {item.available
-              ? <FaEye className={styles.icon} onClick={() => onClickIcon()} />
-              : <FaEyeSlash className={styles.icon} onClick={() => onClickIcon()} />
+              ? <FaEye className={styles.icon}
+                onClick={(e) => {
+                  e.preventDefault()
+                  onClickIcon()
+                }}
+              />
+              : <FaEyeSlash className={styles.icon}
+                onClick={(e) => {
+                  e.preventDefault()
+                  onClickIcon()
+                }}
+              />
             }
           </div>
         </div>

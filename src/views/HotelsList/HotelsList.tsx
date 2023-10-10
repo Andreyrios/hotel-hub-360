@@ -71,7 +71,8 @@ function HotelsList() {
                   key={hotel.id} item={hotel}
                   onClick={() => apiGetHotel(hotel.id)}
                   onClickIcon={() => {
-                    apiUpdateHotel(hotel)
+                    const isAvailableApi = true
+                    apiUpdateHotel(hotel, isAvailableApi)
                   }}
                 />
               )
