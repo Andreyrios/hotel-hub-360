@@ -9,6 +9,7 @@ interface Props {
   textLabel?: string
   placeholder: string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  disabled?: boolean
 }
 
 function CustomInput(props: Props) {

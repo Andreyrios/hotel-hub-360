@@ -9,7 +9,6 @@ export interface ItemHotel {
   name: string
   image: string
   id: number
-  [key: string]: any;
 }
 
 export interface CreateItemHotel {
@@ -21,5 +20,5 @@ export interface CreateItemHotel {
   available: boolean
   name: string
   image: string
-  [key: string]: any;
+  id: number
 }

@@ -6,12 +6,17 @@ interface Props {
   icon?: React.FC<React.SVGProps<SVGSVGElement>>
   textButton: string
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
+  className?: string
 }
 
 function CustomButton(props: Props) {
 
   return (
-    <button className={styles.customButton} type={props.type} >
+    <button
+      type={props.type}
+      onClick={props.onClick}
+      className={`${styles.customButton} ${props.className}`}
+    >
       {props.icon && <props.icon className={styles.icon} />}
       {props.textButton}
     </button>

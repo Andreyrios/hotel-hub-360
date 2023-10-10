@@ -16,33 +16,45 @@ import useHotels from "../../hooks/useHotels";
 // Interfaces
 import { ItemHotel } from "../../interfaces/generalInterfaces";
 
-const dataToCreateHotel = {
-  name: '',
-  nit: 0,
-  phone: '',
-  email: '',
-  address: '',
-  star: 0,
-  available: true,
-  image: '',
-}
-
 function HotelsList() {
-  const { loading, listHotels, apiGetHotel, hotel, setIsModalDetailHotel, isModalDetailHotel } = useHotels();
-  const [isModalCreateHotel, setIsModalCreateHotel] = useState(false);
+  const {
+    hotel,
+    loading,
+    listHotels,
+    apiGetHotel,
+    apiUpdateHotel,
+    apiCreateHotel,
+    apiGetHotelsList,
+    isModalCreateHotel,
+    isModalDetailHotel,
+    setIsModalDetailHotel,
+    setIsModalCreateHotel, } = useHotels();
 
   useEffect(() => {
-    if (hotel) {
-      setIsModalDetailHotel(true);
-    }
-  }, [hotel, setIsModalDetailHotel]);
+    apiGetHotelsList();
+  }, []);
 
   return (
     <div className={styles.main}>
       {hotel &&
-        <ModalCreateEditHotel dataHotelProps={hotel} show={isModalDetailHotel} onHide={() => setIsModalDetailHotel(false)} />
+        <ModalCreateEditHotel
+          dataHotelProps={hotel}
+          show={isModalDetailHotel}
+          title='Información del hotel'
+          mainClick={(dataHotela: any) => {
+            apiUpdateHotel(dataHotela)
+          }}
+          onHide={() => setIsModalDetailHotel(false)}
+        />
       }
-      <ModalCreateEditHotel dataHotelProps={dataToCreateHotel} show={isModalCreateHotel} onHide={() => setIsModalCreateHotel(false)} />
+      <ModalCreateEditHotel
+        title='Crear hotel'
+        show={isModalCreateHotel}
+        mainClick={(dataHotela: any) => {
+          apiCreateHotel(dataHotela)
+        }}
+        onHide={() => setIsModalCreateHotel(false)}
+      />
       <Loader show={loading} />
       <ContainerTitleView>
         <TitleView text='Lista de Hoteles' />
@@ -55,7 +67,13 @@ function HotelsList() {
           <>
             {listHotels.map((hotel: ItemHotel) => {
               return (
-                <CustomCard key={hotel.id} item={hotel} onClick={() => apiGetHotel(hotel.id)} />
+                <CustomCard
+                  key={hotel.id} item={hotel}
+                  onClick={() => apiGetHotel(hotel.id)}
+                  onClickIcon={() => {
+                    apiUpdateHotel(hotel)
+                  }}
+                />
               )
             })}
           </>

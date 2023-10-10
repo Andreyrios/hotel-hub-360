@@ -2,3 +2,44 @@
   color: white;
   font-family: var(--FONT-BOLD);
 }
+
+.iconsModal {
+  margin: 3px;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0.2rem;
+  transition: transform 0.3s;
+  color: var(--PRIMARY-COLOR);
+}
+
+.iconsModal:hover {
+  color: white;
+  border-radius: 7px;
+  transform: scale(1.1);
+  background: var(--SECONDARY-COLOR);
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.containerButton,
+.containerInputBig {
+  width: 49%;
+}
+
+.containerInputSmall {
+  width: 32%;
+}
+
+.containerButtons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btnAdiStyle {
+  background: var(--COLOR-GRAY-MEDIUM);
+}
