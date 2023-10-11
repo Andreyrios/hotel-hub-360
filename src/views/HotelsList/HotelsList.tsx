@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 // Styles
 import styles from "./HotelsList.module.css"
 // Components
@@ -32,10 +32,9 @@ function HotelsList() {
     setIsModalCreateHotel, } = useHotels();
   const navigate = useNavigate();
 
-
   useEffect(() => {
     apiGetHotelsList();
-  }, []);
+  }, [apiGetHotelsList]);
 
   return (
     <div className={styles.main}>

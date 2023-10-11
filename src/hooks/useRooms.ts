@@ -60,7 +60,7 @@ function useRooms({ idHotel }: Props) {
     setLoading(true);
     try {
       const response = await updateRoom(dataRoom, idHotel, idRoom,);
-      const { data, errored } = response;
+      const { errored } = response;
       if (!errored) {
         apiGetRoomsList()
         setIsModalDetailRoom(false)
@@ -78,7 +78,7 @@ function useRooms({ idHotel }: Props) {
     setLoading(true);
     try {
       const response = await createRoom(dataRoom, idHotel);
-      const { data, errored } = response;
+      const { errored } = response;
       if (!errored) {
         apiGetRoomsList()
         setIsModalCreateRoom(false)
