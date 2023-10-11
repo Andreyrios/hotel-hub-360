@@ -2,3 +2,8 @@
   color: var(--PRIMARY-COLOR);
   font-family: var(--FONT-MEDIUM);
 }
+
+.mainTitle {
+  display: flex;
+  align-items: center;
+}

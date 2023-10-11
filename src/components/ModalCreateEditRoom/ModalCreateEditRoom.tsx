@@ -1,44 +1,40 @@
 import { useEffect, useState } from 'react';
 // Styles
-import styles from './ModalCreateEditHotel.module.css'
+import styles from './ModalCreateEditRoom.module.css'
 // Libraries
-import { Button } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
-import { useNavigate } from 'react-router-dom';
 import { FaPen, FaTimes } from 'react-icons/fa';
 // Interfaces
-import { CreateItemHotel, ItemHotel } from '../../interfaces/generalInterfaces';
+import { ItemRoom } from '../../interfaces/generalInterfaces';
 // Components
 import CustomInput from '../Input/Input';
 import TitleView from '../TitleView/TitleView';
 import CustomButton from '../CustomButton/CustomButton';
 import ContainerTitleView from '../ContainerTitleView/ContainerTitleView';
 // Utils
-import { dataToCreateHotel } from '../../utils/dataToCreateHotel';
-import { pathName } from '../../utils/pathName';
+import { dataToCreateRoom } from '../../utils/dataToCreateRoom';
 
 interface Props {
   show: boolean
   title: string
   onHide: () => void
-  mainClick: (data: ItemHotel | CreateItemHotel) => void
-  dataHotelProps?: ItemHotel | CreateItemHotel
+  mainClick: (data: ItemRoom) => void
+  dataRoomProps?: ItemRoom
 }
 
-function ModalCreateEditHotel({ show, onHide, title, dataHotelProps, mainClick }: Props) {
-  const [dataHotel, setDataHotel] = useState<CreateItemHotel | ItemHotel>(dataHotelProps || dataToCreateHotel)
-  const [isEdit, setIsEdit] = useState(dataHotelProps && false)
-  const navigate = useNavigate();
+function ModalCreateEditRoom({ show, onHide, title, dataRoomProps, mainClick }: Props) {
+  const [dataRoom, setDataRoom] = useState<ItemRoom>(dataRoomProps || dataToCreateRoom)
+  const [isEdit, setIsEdit] = useState(dataRoomProps && false)
 
   useEffect(() => {
-    if (dataHotelProps) {
-      setDataHotel(dataHotelProps)
+    if (dataRoomProps) {
+      setDataRoom(dataRoomProps)
     }
-  }, [dataHotelProps])
+  }, [dataRoomProps])
 
   const handleChange = (name: string, value: string) => {
-    setDataHotel({
-      ...dataHotel,
+    setDataRoom({
+      ...dataRoom,
       [name]: value
     })
   }
@@ -47,9 +43,9 @@ function ModalCreateEditHotel({ show, onHide, title, dataHotelProps, mainClick }
     e.preventDefault()
 
     try {
-      mainClick(dataHotel);
+      mainClick(dataRoom);
       setIsEdit(false)
-      setDataHotel(dataToCreateHotel)
+      setDataRoom(dataToCreateRoom)
     } catch (error) {
       console.error(error)
     }
@@ -63,7 +59,7 @@ function ModalCreateEditHotel({ show, onHide, title, dataHotelProps, mainClick }
         show={show}
         onHide={() => {
           setIsEdit(false)
-          setDataHotel(dataToCreateHotel)
+          setDataRoom(dataToCreateRoom)
           onHide()
         }}
         aria-labelledby='contained-modal-title-vcenter'
@@ -75,15 +71,7 @@ function ModalCreateEditHotel({ show, onHide, title, dataHotelProps, mainClick }
           <ContainerTitleView>
             <TitleView text={isEdit ? 'Editar información' : title} />
             <div>
-              {dataHotelProps &&
-                <Button
-                  variant='success'
-                  onClick={() => navigate(pathName.roomsList, { state: { idHotel: dataHotel.id } })}
-                >
-                  Ver habitaciones
-                </Button>
-              }
-              {!isEdit && dataHotelProps &&
+              {!isEdit && dataRoomProps &&
                 <FaPen className={styles.iconsModal} onClick={() => setIsEdit(true)} />
               }
               <FaTimes className={styles.iconsModal} onClick={() => onHide()} />
@@ -94,67 +82,11 @@ function ModalCreateEditHotel({ show, onHide, title, dataHotelProps, mainClick }
             <div className={styles.containerInputBig}>
               <CustomInput
                 type='text'
-                name='name'
-                textLabel='Nombre'
-                value={dataHotel.name}
-                placeholder='Nombre del hotel'
-                disabled={dataHotelProps ? !isEdit : false}
-                onChange={(e) => handleChange(e.target.name, e.target.value)}
-              />
-            </div>
-            <div className={styles.containerInputBig}>
-              <CustomInput
-                name='email'
-                type='email'
-                textLabel='Email'
-                value={dataHotel.email}
-                placeholder='Correo electrónico'
-                disabled={dataHotelProps ? !isEdit : false}
-                onChange={(e) => handleChange(e.target.name, e.target.value)}
-              />
-            </div>
-            <div className={styles.containerInputSmall}>
-              <CustomInput
-                name='phone'
-                type='phone'
-                textLabel='Teléfono'
-                value={dataHotel.phone}
-                placeholder='Número de teléfono'
-                disabled={dataHotelProps ? !isEdit : false}
-                onChange={(e) => handleChange(e.target.name, e.target.value)}
-              />
-            </div>
-            <div className={styles.containerInputSmall}>
-              <CustomInput
-                name='nit'
-                type='number'
-                textLabel='Nit'
-                placeholder='Número Nit'
-                value={`${dataHotel.nit}`}
-                disabled={dataHotelProps ? !isEdit : false}
-                onChange={(e) => handleChange(e.target.name, e.target.value)}
-              />
-            </div>
-            <div className={styles.containerInputSmall}>
-              <CustomInput
-                name='star'
-                type='number'
-                placeholder='Estrellas'
-                value={`${dataHotel.star}`}
-                textLabel='Número de estrellas'
-                disabled={dataHotelProps ? !isEdit : false}
-                onChange={(e) => handleChange(e.target.name, e.target.value)}
-              />
-            </div>
-
-            <div className={styles.containerInputBig}>
-              <CustomInput
-                type='text'
-                name='address'
-                textLabel='Dirección'
-                value={dataHotel.address}
-                placeholder='Ingresa la Dirección'
-                disabled={dataHotelProps ? !isEdit : false}
+                name='type'
+                textLabel='Tipo'
+                value={dataRoom.type}
+                placeholder='Tipo de habitación'
+                disabled={dataRoomProps ? !isEdit : false}
                 onChange={(e) => handleChange(e.target.name, e.target.value)}
               />
             </div>
@@ -162,13 +94,81 @@ function ModalCreateEditHotel({ show, onHide, title, dataHotelProps, mainClick }
               <CustomInput
                 type='url'
                 name='image'
-                value={dataHotel.image}
-                textLabel='Url de la imagen'
-                placeholder='Ingresa la url de la imagen'
-                disabled={dataHotelProps ? !isEdit : false}
+                textLabel='Imagen'
+                value={dataRoom.image}
+                placeholder='Url de la imagen'
+                disabled={dataRoomProps ? !isEdit : false}
                 onChange={(e) => handleChange(e.target.name, e.target.value)}
               />
             </div>
+            <div className={styles.containerInputSmall}>
+              <CustomInput
+                name='number'
+                type='number'
+                textLabel='Habitación'
+                value={`${dataRoom.number}`}
+                placeholder='Número de Habitación'
+                disabled={dataRoomProps ? !isEdit : false}
+                onChange={(e) => handleChange(e.target.name, e.target.value)}
+              />
+            </div>
+            <div className={styles.containerInputSmall}>
+              <CustomInput
+                type='number'
+                name='base_price'
+                textLabel='Precio'
+                placeholder='Precio base'
+                value={`${dataRoom.base_price}`}
+                disabled={dataRoomProps ? !isEdit : false}
+                onChange={(e) => handleChange(e.target.name, e.target.value)}
+              />
+            </div>
+            <div className={styles.containerInputSmall}>
+              <CustomInput
+                name='tax'
+                type='number'
+                textLabel='Impuesto'
+                value={dataRoom.tax}
+                placeholder='Impuesto'
+                disabled={dataRoomProps ? !isEdit : false}
+                onChange={(e) => handleChange(e.target.name, e.target.value)}
+              />
+            </div>
+            <div className={styles.containerInputBig}>
+              <CustomInput
+                type='text'
+                name='address'
+                textLabel='Dirección'
+                value={dataRoom.address}
+                placeholder='Ingresa la Dirección'
+                disabled={dataRoomProps ? !isEdit : false}
+                onChange={(e) => handleChange(e.target.name, e.target.value)}
+              />
+            </div>
+            <div className={styles.containerInputBig}>
+              <CustomInput
+                type='text'
+                name='city'
+                textLabel='Ciudad'
+                value={dataRoom.city}
+                placeholder='Ingresa la Ciudad'
+                disabled={dataRoomProps ? !isEdit : false}
+                onChange={(e) => handleChange(e.target.name, e.target.value)}
+              />
+            </div>
+
+            {/* <div className={styles.containerInputBig}> */}
+            <CustomInput
+              isTextArea
+              type='text'
+              name='description'
+              textLabel='Descripción'
+              placeholder='Descripción'
+              value={dataRoom.description}
+              disabled={dataRoomProps ? !isEdit : false}
+              onChange={(e) => handleChange(e.target.name, e.target.value)}
+            />
+            {/* </div> */}
 
             {isEdit &&
               <div className={styles.containerButtons}>
@@ -179,8 +179,8 @@ function ModalCreateEditHotel({ show, onHide, title, dataHotelProps, mainClick }
                     className={styles.btnAdiStyle}
                     onClick={() => {
                       setIsEdit(false)
-                      if (dataHotelProps) {
-                        setDataHotel(dataHotelProps)
+                      if (dataRoomProps) {
+                        setDataRoom(dataRoomProps)
                       }
                     }}
                   />
@@ -195,7 +195,7 @@ function ModalCreateEditHotel({ show, onHide, title, dataHotelProps, mainClick }
               </div>
             }
 
-            {!dataHotelProps &&
+            {!dataRoomProps &&
               <CustomButton
                 type='submit'
                 textButton='Crear'
@@ -208,4 +208,4 @@ function ModalCreateEditHotel({ show, onHide, title, dataHotelProps, mainClick }
   )
 }
 
-export default ModalCreateEditHotel
+export default ModalCreateEditRoom
