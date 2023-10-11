@@ -35,7 +35,7 @@ function useRooms({ idHotel }: Props) {
     }
   };
 
-  const apiGetRoom = async (idHotel: number, idRoom: number) => {
+  const apiGetRoom = async (idRoom: number) => {
     setLoading(true);
     try {
       const response = await getRoom(idHotel, idRoom);
@@ -53,13 +53,13 @@ function useRooms({ idHotel }: Props) {
     }
   };
 
-  const apiUpdateRoom = async (dataRoom: any, idRoom: number, isOnlyAvailable?: boolean,) => {
+  const apiUpdateRoom = async (dataRoom: ItemRoom, idRoom: number, isOnlyAvailable?: boolean,) => {
     if (isOnlyAvailable) {
       dataRoom.available = !dataRoom.available
     }
     setLoading(true);
     try {
-      const response = await updateRoom(dataRoom, dataRoom.hotel_id, idRoom,);
+      const response = await updateRoom(dataRoom, idHotel, idRoom,);
       const { data, errored } = response;
       if (!errored) {
         apiGetRoomsList()
@@ -74,10 +74,10 @@ function useRooms({ idHotel }: Props) {
     }
   };
 
-  const apiCreateRoom = async (dataRoom: any) => {
+  const apiCreateRoom = async (dataRoom: ItemRoom) => {
     setLoading(true);
     try {
-      const response = await createRoom(dataRoom, dataRoom.hotel_id);
+      const response = await createRoom(dataRoom, idHotel);
       const { data, errored } = response;
       if (!errored) {
         apiGetRoomsList()

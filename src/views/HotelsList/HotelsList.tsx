@@ -9,8 +9,9 @@ import CustomCardHotel from "./components/CustomCardHotel/CustomCardHotel";
 import ContainerTitleView from "../../components/ContainerTitleView/ContainerTitleView";
 import ModalCreateEditHotel from "../../components/ModalCreateEditHotel/ModalCreateEditHotel";
 // Libraries
-import { FaPlus } from "react-icons/fa";
 import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { FaArrowLeft, FaPlus } from "react-icons/fa";
 // Custom Hooks
 import useHotels from "../../hooks/useHotels";
 // Interfaces
@@ -29,6 +30,8 @@ function HotelsList() {
     isModalDetailHotel,
     setIsModalDetailHotel,
     setIsModalCreateHotel, } = useHotels();
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     apiGetHotelsList();
@@ -57,7 +60,7 @@ function HotelsList() {
       />
       <Loader show={loading} />
       <ContainerTitleView>
-        <TitleView text='Hoteles' />
+        <TitleView text='Hoteles' Icon={FaArrowLeft} onClick={() => navigate(-1)} />
         <Button className="m-0" variant="success" onClick={() => setIsModalCreateHotel(true)} >
           <FaPlus /> Crear Hotel
         </Button>

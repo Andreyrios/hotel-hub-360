@@ -3,9 +3,10 @@ import { MdLocationPin } from 'react-icons/md';
 import { FaEye, FaEyeSlash, FaPhone } from 'react-icons/fa';
 // Styles
 import styles from './CustomCardHotel.module.css'
-import { starRating } from '../../../../utils/renderStars';
+// Interfaces
 import { ItemHotel } from '../../../../interfaces/generalInterfaces';
 // Utils
+import { starRating } from '../../../../utils/renderStars';
 
 interface Props {
   item: ItemHotel

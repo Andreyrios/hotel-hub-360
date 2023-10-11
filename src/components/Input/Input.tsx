@@ -8,8 +8,9 @@ interface Props {
   icon?: React.FC<React.SVGProps<SVGSVGElement>>
   textLabel?: string
   placeholder: string
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onChange: (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => void
   disabled?: boolean
+  isTextArea?: boolean | null | undefined
 }
 
 function CustomInput(props: Props) {
@@ -18,10 +19,21 @@ function CustomInput(props: Props) {
     <label className={styles.customLabel}>
       {props.textLabel}
       <div className={styles.containerInput}>
-        <input
-          {...props}
-          className={styles.customInput}
-        />
+        {!props.isTextArea ?
+          <input
+            {...props}
+            className={styles.customInput}
+          />
+          :
+          <textarea
+            name={props.name}
+            value={props.value}
+            disabled={props.disabled}
+            placeholder={props.placeholder}
+            className={styles.customTextArea}
+            onChange={(e) => props.onChange(e)}
+          />
+        }
         {props.icon && <props.icon className={styles.icon} />}
       </div>
     </label>

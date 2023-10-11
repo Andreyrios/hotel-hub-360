@@ -29,7 +29,7 @@ export interface ItemRoom {
   type: string
   description: string
   created_at: string
-  available: boolean,
+  available: boolean
   base_price: string
   tax: string
   address: string

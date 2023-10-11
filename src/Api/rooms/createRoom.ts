@@ -1,13 +1,13 @@
 import settings from "../../config";
 import APICallback from "../APICallback";
 // Interfaces
-import { CreateItemHotel } from "../../interfaces/generalInterfaces";
+import { ItemRoom } from "../../interfaces/generalInterfaces";
 
 const METHOD = "POST";
 const SUCCESS_STATUS_CODE = 201;
 let endPointAPI = settings.endPointServerURL;
 
-function createRoom(dataToSend: CreateItemHotel, idHotel: number) {
+function createRoom(dataToSend: ItemRoom, idHotel: number) {
   const endPoint = `/api/hotel/${idHotel}/room`;
   let CREATE_ROOM = endPointAPI + endPoint;
   return APICallback(
