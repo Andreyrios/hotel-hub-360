@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { createHotel } from "../Api/hotels/createHotel";
 // Api
 import { getHotel } from "../Api/hotels/getHotel";
@@ -15,7 +15,7 @@ function useHotels() {
   const [isModalDetailHotel, setIsModalDetailHotel] = useState(false);
   const [isModalCreateHotel, setIsModalCreateHotel] = useState(false);
 
-  const apiGetHotelsList = async () => {
+  const apiGetHotelsList = useCallback(async () => {
     setLoading(true);
     try {
       const response = await getHotels();
@@ -30,7 +30,7 @@ function useHotels() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   const apiGetHotel = async (idHotel: number) => {
     setLoading(true);
@@ -57,7 +57,7 @@ function useHotels() {
     setLoading(true);
     try {
       const response = await updateHotel(dataHotel, dataHotel.id);
-      const { data, errored } = response;
+      const { errored } = response;
       if (!errored) {
         apiGetHotelsList()
         setIsModalDetailHotel(false)
@@ -75,7 +75,7 @@ function useHotels() {
     setLoading(true);
     try {
       const response = await createHotel(dataHotel);
-      const { data, errored } = response;
+      const { errored } = response;
       if (!errored) {
         apiGetHotelsList()
         setIsModalCreateHotel(false)
