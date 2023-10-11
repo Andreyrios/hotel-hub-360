@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 // Api
 import { getRoom } from "../Api/rooms/getRoom";
 import { getRooms } from "../Api/rooms/getRooms";
@@ -18,7 +18,7 @@ function useRooms({ idHotel }: Props) {
   const [isModalDetailRoom, setIsModalDetailRoom] = useState(false);
   const [isModalCreateRoom, setIsModalCreateRoom] = useState(false);
 
-  const apiGetRoomsList = async () => {
+  const apiGetRoomsList = useCallback(async () => {
     setLoading(true);
     try {
       const response = await getRooms(idHotel);
@@ -33,7 +33,7 @@ function useRooms({ idHotel }: Props) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [idHotel]);
 
   const apiGetRoom = async (idRoom: number) => {
     setLoading(true);
