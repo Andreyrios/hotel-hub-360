@@ -7,7 +7,7 @@ import CardItem from "./components/CardItem/CardItem";
 
 function Main() {
   return (
-    <div className={styles.main}>
+    <div className={styles.main} data-testid='main' >
       <div className={styles.containerList}>
         {listItemsDashboards.map(item =>
           <CardItem key={item.id} item={item} />
