@@ -31,7 +31,7 @@ function Login() {
       navigate(pathName.main)
       return
     }
-  }, [])
+  }, [userReducer.user, navigate])
 
   const handleChange = (name: string, value: string) => {
     setLoginInfo({

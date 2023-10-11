@@ -41,7 +41,7 @@ function RoomsList() {
     } else {
       navigate(-1)
     }
-  }, []);
+  }, [idHotelPath, navigate, apiGetRoomsList]);
 
   return (
     <div className={styles.main}>
