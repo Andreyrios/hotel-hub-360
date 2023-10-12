@@ -38,6 +38,19 @@ export interface ItemRoom {
   hotel_id: number
 }
 
+export interface ItemUser {
+  first_name: string
+  last_name: string
+  phone: string
+  email: string
+  document_type: string
+  dni: number,
+  birth_date: string
+  gender: string
+  created_at: string
+  id: number
+}
+
 export interface ItemBooking {
   user_id: number
   room_id: number
@@ -49,4 +62,5 @@ export interface ItemBooking {
   comment: string
   created_at: string
   id: number
+  user_name: string
 }
