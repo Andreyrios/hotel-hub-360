@@ -37,3 +37,16 @@ export interface ItemRoom {
   id: number
   hotel_id: number
 }
+
+export interface ItemBooking {
+  user_id: number
+  room_id: number
+  quantity_room: number
+  number_guests: number
+  price: string
+  checkIn: string
+  checkOut: string
+  comment: string
+  created_at: string
+  id: number
+}

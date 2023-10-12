@@ -1,0 +1,39 @@
+.customCard {
+  width: 100%;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.7s;
+}
+
+.customCard:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
+.InfoCard {
+  padding: 0.5rem;
+  color: var(--PRIMARY-COLOR);
+  border-bottom: 1px solid #0000002d;
+}
+
+.InfoCard > p {
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 50px;
+  color: var(--SECONDARY-COLOR);
+  font-family: var(--FONT-MEDIUM);
+}
+
+.icon {
+  margin: 3px;
+  cursor: pointer;
+  padding: 0.2rem;
+  color: var(--PRIMARY-COLOR);
+}
