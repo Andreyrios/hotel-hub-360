@@ -15,8 +15,8 @@ interface Props {
 
 function CardBooking({ item, onClick }: Props) {
   const today = new Date()
-  const checkOut = new Date(item.checkOut)
   const checkIn = new Date(item.checkIn)
+  const checkOut = new Date(item.checkOut)
 
   return (
     <>
@@ -27,15 +27,14 @@ function CardBooking({ item, onClick }: Props) {
             title={dateFormater(item.created_at)}
             className={`${styles.customCard} card`}
             style={{
-              background: checkOut < today
-                ? 'red'
-                : checkIn <= today && checkOut >= today
-                  ? 'yellow'
-                  : 'green'
+              background: checkIn <= today && checkOut >= today
+                ? '#ffd70059'
+                : '#00800040'
             }}
           >
             <div className={styles.InfoCard}>
-              <p className={styles.title}>Fecha de reserva {dateFormater(item.created_at)}</p>
+              <p className={styles.title}>{item.user_name}</p>
+              <p className={styles.title}>{dateFormater(item.created_at)}</p>
               <p><FaMoneyBillAlt /> {cashFormatter(item.price)}</p>
               <p><FaSignInAlt /> {dateFormater(checkIn)}</p>
               <p><FaSignOutAlt /> {dateFormater(checkOut)}</p>
