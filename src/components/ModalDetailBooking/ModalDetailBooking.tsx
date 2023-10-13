@@ -30,7 +30,7 @@ function ModalDetailBooking({ show, onHide, dataBooking, users }: Props) {
       newGuests.push(user)
     }
     setGuests(newGuests)
-  }, [guests, dataBooking.number_guests, users])
+  }, [show, dataBooking.number_guests, users])
 
   return (
     <>
@@ -42,7 +42,7 @@ function ModalDetailBooking({ show, onHide, dataBooking, users }: Props) {
         aria-labelledby='contained-modal-title-vcenter'
       >
         <Modal.Body
-          style={{ borderRadius: '6.5px' }}
+          style={{ borderRadius: '6.5px', position: 'relative' }}
         >
           <ContainerTitleView>
             <TitleView text={`Reserva Nro° ${dataBooking.id}`} />

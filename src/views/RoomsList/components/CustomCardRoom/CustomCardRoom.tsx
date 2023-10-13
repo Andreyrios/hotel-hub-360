@@ -16,7 +16,7 @@ function CustomCardRoom({ item, onClick, onClickIcon }: Props) {
 
   return (
     <>
-      <div className="p-1" style={{ width: '25%' }}>
+      <div className={`p-1 ${styles.cardComplete}`}>
         <div
           onClick={onClick}
           className={`${styles.customCard} card ${!item.available && styles.opacityAvailable}`}

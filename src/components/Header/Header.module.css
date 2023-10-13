@@ -9,3 +9,17 @@
 .logo {
   margin: 0;
 }
+
+@media (max-width: 600px) {
+  .header {
+    padding: 0.5rem;
+  }
+
+  .logo {
+    width: 100%;
+  }
+
+  .logo > img {
+    width: 100%;
+  }
+}

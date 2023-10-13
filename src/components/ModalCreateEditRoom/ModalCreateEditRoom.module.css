@@ -3,6 +3,12 @@
   font-family: var(--FONT-BOLD);
 }
 
+.containerIconsControl {
+  right: 0;
+  top: 1rem;
+  position: absolute;
+}
+
 .iconsModal {
   margin: 3px;
   font-size: 2rem;
@@ -42,4 +48,12 @@
 
 .btnAdiStyle {
   background: var(--COLOR-GRAY-MEDIUM);
+}
+
+@media (max-width: 991px) {
+  .containerButton,
+  .containerInputSmall,
+  .containerInputBig {
+    width: 100%;
+  }
 }

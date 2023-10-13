@@ -3,8 +3,8 @@ import { useEffect } from "react";
 import styles from "./BookingsList.module.css"
 // Components
 import Loader from "../../components/Loader/Loader";
-import CardBooking from "./CardBooking/CardBooking";
 import TitleView from "../../components/TitleView/TitleView";
+import CardBooking from "./components/CardBooking/CardBooking";
 import ContainerList from "../../components/ContainerList/ContainerList";
 import ContainerTitleView from "../../components/ContainerTitleView/ContainerTitleView";
 import ModalDetailBooking from "../../components/ModalDetailBooking/ModalDetailBooking";

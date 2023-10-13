@@ -44,3 +44,8 @@
   position: absolute;
   transform: translateY(-50%);
 }
+
+.customTextArea:disabled,
+.customInput:disabled {
+  border: none;
+}
