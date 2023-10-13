@@ -3,10 +3,10 @@ import { FaMoneyBillAlt, FaSignInAlt, FaSignOutAlt } from 'react-icons/fa';
 // Styles
 import styles from './CardBooking.module.css'
 // Interfaces
-import { ItemBooking } from '../../../interfaces/generalInterfaces';
+import { ItemBooking } from '../../../../interfaces/generalInterfaces';
 // Utils
-import cashFormatter from '../../../utils/cashFormatter';
-import { dateFormater } from '../../../utils/dateFormater';
+import cashFormatter from '../../../../utils/cashFormatter';
+import { dateFormater } from '../../../../utils/dateFormater';
 
 interface Props {
   item: ItemBooking
@@ -21,7 +21,7 @@ function CardBooking({ item, onClick }: Props) {
   return (
     <>
       {checkOut > today &&
-        <div className="p-1" style={{ width: '25%' }}>
+        <div className={`p-1 ${styles.cardComplete}`}>
           <div
             onClick={onClick}
             title={dateFormater(item.created_at)}

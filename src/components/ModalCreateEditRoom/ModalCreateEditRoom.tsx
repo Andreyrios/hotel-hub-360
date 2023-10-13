@@ -65,16 +65,25 @@ function ModalCreateEditRoom({ show, onHide, title, dataRoomProps, mainClick }: 
         aria-labelledby='contained-modal-title-vcenter'
       >
         <Modal.Body
-          className='text-center'
+          className='text-center pt-5'
           style={{ borderRadius: '6.5px' }}
         >
           <ContainerTitleView>
             <TitleView text={isEdit ? 'Editar información' : title} />
-            <div>
-              {!isEdit && dataRoomProps &&
-                <FaPen className={styles.iconsModal} onClick={() => setIsEdit(true)} />
-              }
-              <FaTimes className={styles.iconsModal} onClick={() => onHide()} />
+            <div className={styles.modalsControl}>
+              <div className={styles.containerIconsControl}>
+                {!isEdit && dataRoomProps &&
+                  <FaPen className={styles.iconsModal} onClick={() => setIsEdit(true)} />
+                }
+                <FaTimes
+                  className={styles.iconsModal}
+                  onClick={() => {
+                    setIsEdit(false)
+                    setDataRoom(dataToCreateRoom)
+                    onHide()
+                  }}
+                />
+              </div>
             </div>
           </ContainerTitleView>
           <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>

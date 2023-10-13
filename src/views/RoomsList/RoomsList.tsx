@@ -51,7 +51,7 @@ function RoomsList() {
             <ModalCreateEditRoom
               dataRoomProps={room}
               show={isModalDetailRoom}
-              title='Información del Habitación'
+              title='Información de Habitación'
               mainClick={(room: ItemRoom) => {
                 apiUpdateRoom(room, room.id)
               }}

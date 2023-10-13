@@ -4,7 +4,7 @@
   padding: 0 2rem;
   align-content: center;
   height: calc(100vh - 122px);
-  background: var(--COLOR-BACKGROUND);
+  background: var(--PRIMARY-COLOR);
 }
 
 .login {
@@ -30,4 +30,38 @@
 .containerButton {
   width: 50%;
   margin: auto;
+}
+
+@media (max-width: 1024px) {
+  .login {
+    width: 55%;
+  }
+}
+
+@media (max-width: 768px) {
+  .login {
+    width: 65%;
+    padding: 2rem 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .main {
+    padding: 0 1rem;
+    height: calc(100vh - 93px);
+  }
+
+  .login {
+    width: 80%;
+  }
+}
+
+@media (max-width: 478px) {
+  .login {
+    width: 100%;
+  }
+
+  .containerButton {
+    width: 100%;
+  }
 }

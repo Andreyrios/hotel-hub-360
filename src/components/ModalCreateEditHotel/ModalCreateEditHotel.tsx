@@ -69,8 +69,8 @@ function ModalCreateEditHotel({ show, onHide, title, dataHotelProps, mainClick }
         aria-labelledby='contained-modal-title-vcenter'
       >
         <Modal.Body
-          className='text-center'
-          style={{ borderRadius: '6.5px' }}
+          className='text-center pt-5'
+          style={{ borderRadius: '6.5px', position: 'relative' }}
         >
           <ContainerTitleView>
             <TitleView text={isEdit ? 'Editar información' : title} />
@@ -83,10 +83,19 @@ function ModalCreateEditHotel({ show, onHide, title, dataHotelProps, mainClick }
                   Ver habitaciones
                 </Button>
               }
-              {!isEdit && dataHotelProps &&
-                <FaPen className={styles.iconsModal} onClick={() => setIsEdit(true)} />
-              }
-              <FaTimes className={styles.iconsModal} onClick={() => onHide()} />
+              <div className={styles.containerIconsControl}>
+                {!isEdit && dataHotelProps &&
+                  <FaPen className={styles.iconsModal} onClick={() => setIsEdit(true)} />
+                }
+                <FaTimes
+                  className={styles.iconsModal}
+                  onClick={() => {
+                    setIsEdit(false)
+                    setDataHotel(dataToCreateHotel)
+                    onHide()
+                  }}
+                />
+              </div>
             </div>
           </ContainerTitleView>
           <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>

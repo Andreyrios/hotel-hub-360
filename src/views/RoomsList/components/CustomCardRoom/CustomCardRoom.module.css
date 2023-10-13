@@ -1,3 +1,7 @@
+.cardComplete {
+  width: 25%;
+}
+
 .customCard {
   width: 100%;
   cursor: pointer;
@@ -70,4 +74,22 @@
   border-radius: 7px;
   transform: scale(1.1);
   background: var(--SECONDARY-COLOR);
+}
+
+@media (max-width: 1024px) {
+  .cardComplete {
+    width: calc(100% / 3);
+  }
+}
+
+@media (max-width: 768px) {
+  .cardComplete {
+    width: calc(100% / 2);
+  }
+}
+
+@media (max-width: 600px) {
+  .cardComplete {
+    width: 100%;
+  }
 }
