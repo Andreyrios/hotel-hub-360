@@ -1,24 +1,33 @@
 import { useEffect, useState } from "react";
 // Libraries
-import { FaKey, FaUser, FaUserCircle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { FaKey, FaUser, FaUserCircle } from "react-icons/fa";
 // Components
-import CustomButton from "../../components/CustomButton/CustomButton";
-import CustomInput from "../../components/Input/Input";
 import Loader from "../../components/Loader/Loader";
+import CustomInput from "../../components/Input/Input";
+import CustomButton from "../../components/CustomButton/CustomButton";
 // Interfaces
 import { useAppDispatch, useAppSelector } from "../../interfaces/redux";
 // Redux
 import { setInfoUser } from "../../redux/Actions/userActions";
 // Utils
 import { pathName } from "../../utils/pathName";
+import { USERS_PERMISSIONS } from "../../utils/userPermissions";
 // Styles
 import styles from './Login.module.css'
+
+interface User {
+  id: number,
+  name: string,
+  lastName: string,
+  permissions: string[]
+}
 
 function Login() {
   const userReducer = useAppSelector((state) => state.userReducer);
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
+  const userSaved = userReducer.user
 
   const [loading, setLoading] = useState(false)
   const [loginInfo, setLoginInfo] = useState({
@@ -27,11 +36,16 @@ function Login() {
   })
 
   useEffect(() => {
-    if (JSON.stringify(userReducer.user) !== '{}') {
+    if (JSON.stringify(userSaved) !== '{}' && userSaved.permissions.includes(USERS_PERMISSIONS.admin)) {
       navigate(pathName.main)
       return
     }
-  }, [userReducer.user, navigate])
+
+    if (JSON.stringify(userSaved) !== '{}' && userSaved.permissions.includes(USERS_PERMISSIONS.customer)) {
+      navigate(pathName.customer)
+      return
+    }
+  }, [userSaved, navigate])
 
   const handleChange = (name: string, value: string) => {
     setLoginInfo({
@@ -40,10 +54,11 @@ function Login() {
     })
   }
 
-  const user = {
+  const user: User = {
+    id: 10,
     name: 'Jhon',
     lastName: 'Doe',
-    id: 10
+    permissions: loginInfo.email === 'admin@admin.com' ? [USERS_PERMISSIONS.admin] : [USERS_PERMISSIONS.customer]
   }
 
   const login = () => {
@@ -56,7 +71,14 @@ function Login() {
         })
       );
       setLoading(false)
-      navigate(pathName.main);
+      if (user.permissions.includes(USERS_PERMISSIONS.admin)) {
+        navigate(pathName.main);
+        return
+      }
+      if (user.permissions.includes(USERS_PERMISSIONS.customer)) {
+        navigate(pathName.main);
+        return
+      }
     }, 2000)
   }
 

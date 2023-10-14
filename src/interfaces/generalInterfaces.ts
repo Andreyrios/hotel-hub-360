@@ -64,3 +64,27 @@ export interface ItemBooking {
   id: number
   user_name: string
 }
+
+export interface QuerySearch {
+  city: string
+  checkOut: string
+  checkIn: string,
+  guestsQuantity: number | string
+}
+
+export interface ItemRoomSearch {
+  image: string
+  title_hotel: string
+  number_guests: number,
+  number: number | string,
+  type: string
+  description: string
+  created_at: string
+  available: boolean,
+  base_price: string
+  tax: string
+  address: string
+  city: string
+  id: string
+  hotel_id: string
+}
