@@ -64,3 +64,10 @@ export interface ItemBooking {
   id: number
   user_name: string
 }
+
+export interface QuerySearch {
+  city: string
+  checkOut: string
+  checkIn: string,
+  guestsQuantity: number
+}

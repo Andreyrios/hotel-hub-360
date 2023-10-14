@@ -1,0 +1,29 @@
+.containerForm {
+  border-radius: 7px;
+  padding: 0.5rem 1rem;
+  background: var(--COLOR-ACCENT-GOLD);
+}
+
+.form {
+  display: flex;
+  align-items: end;
+}
+
+.label {
+  margin-right: 1rem;
+  color: var(--PRIMARY-COLOR);
+  font-family: var(--FONT-BOLD);
+}
+
+.input {
+  outline: none;
+  padding: 0 0.5rem;
+  border-radius: 5px;
+  font-family: var(--FONT-LIGHT);
+  border: 1px solid var(--PRIMARY-COLOR);
+}
+
+.input[type="number"] {
+  width: 90px;
+  font-size: 16px;
+}

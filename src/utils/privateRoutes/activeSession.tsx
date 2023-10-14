@@ -1,18 +1,19 @@
 //libraries
 import { Navigate, Outlet } from "react-router-dom";
-import { useAppSelector } from "../../interfaces/redux";
 // Utils
 import { pathName } from "../pathName";
 
+interface Props {
+  children?: any
+  isAllowed: boolean
+}
 
-export const ActiveSession = () => {
-  const userReducer = useAppSelector((state) => state.userReducer)
-
-  if (JSON.stringify(userReducer.user) === '{}' || !userReducer.user || userReducer.user === undefined || userReducer.user === null) {
+export const ActiveSession = ({ children, isAllowed }: Props) => {
+  if (!isAllowed) {
     return <Navigate to={pathName.login} />
   }
 
-  return <Outlet />;
+  return children || <Outlet />;
 };
 
 export default ActiveSession;
