@@ -3,19 +3,26 @@ import styles from './FormSearch.module.css'
 // Interfaces
 import { QuerySearch } from '../../../../interfaces/generalInterfaces'
 import { Button } from 'react-bootstrap';
-import { FaSearch } from 'react-icons/fa';
+import { FaSearch, FaTimes } from 'react-icons/fa';
 
 interface Props {
   handleChange: (name: string, value: string) => void
   querySearch: QuerySearch
+  onClick?: () => void
+  mainOnClick?: () => void
 }
 
-function FormSearch({ handleChange, querySearch }: Props) {
+function FormSearch({ handleChange, querySearch, onClick, mainOnClick }: Props) {
   const today = new Date().toISOString().substr(0, 10);
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    mainOnClick && mainOnClick()
+  };
 
   return (
     <div className={styles.containerForm}>
-      <form className={styles.form} action="">
+      <form className={styles.form} onSubmit={handleSubmit} >
         <label className={styles.label}>
           Desde <br />
           <input
@@ -60,8 +67,11 @@ function FormSearch({ handleChange, querySearch }: Props) {
             onChange={(e) => handleChange(e.target.name, e.target.value)}
           />
         </label>
-        <Button type='submit' variant='success'>
+        <Button style={{ marginRight: '1rem' }} type='submit' variant='success'>
           <FaSearch /> Buscar
+        </Button>
+        <Button onClick={() => { onClick && onClick() }} type='button' variant='success'>
+          <FaTimes /> Reestablecer
         </Button>
       </form>
     </div>

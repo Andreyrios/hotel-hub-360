@@ -5,24 +5,22 @@ import styles from "./CustomerView.module.css"
 import Loader from "../../components/Loader/Loader";
 import TitleView from "../../components/TitleView/TitleView";
 import ContainerList from "../../components/ContainerList/ContainerList";
-import CustomCardHotel from "./components/CustomCardHotel/CustomCardHotel";
+import CustomCardHotelRoom from "./components/CustomCardHotelRoom/CustomCardHotelRoom";
 import ContainerTitleView from "../../components/ContainerTitleView/ContainerTitleView";
 import ModalCreateEditHotel from "../../components/ModalCreateEditHotel/ModalCreateEditHotel";
-// Libraries
-import { Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import { FaArrowLeft, FaPlus } from "react-icons/fa";
 // Custom Hooks
 import useHotels from "../../hooks/useHotels";
 // Interfaces
-import { ItemHotel, QuerySearch } from "../../interfaces/generalInterfaces";
+import { ItemRoomSearch, QuerySearch } from "../../interfaces/generalInterfaces";
 import FormSearch from "./components/FormSearch/FormSearch";
+// Utils
+import { LIST_ROOMS_TO_HOTEL } from "../../utils/listRoomsHotel";
 
 function CustomerView() {
   const {
     hotel,
     loading,
-    listHotels,
+    // listHotels,
     apiGetHotel,
     apiUpdateHotel,
     apiCreateHotel,
@@ -31,16 +29,18 @@ function CustomerView() {
     isModalDetailHotel,
     setIsModalDetailHotel,
     setIsModalCreateHotel, } = useHotels();
-  const navigate = useNavigate();
 
   const today = new Date().toISOString().substr(0, 10);
 
+  const initialHotelRoomList: ItemRoomSearch[] = LIST_ROOMS_TO_HOTEL
+  const [hotelRoomList, setHotelRoomList] = useState<ItemRoomSearch[]>(initialHotelRoomList);
   const [querySearch, setQuerySearch] = useState<QuerySearch>({
     city: '',
     checkOut: '',
     checkIn: today,
-    guestsQuantity: 1
+    guestsQuantity: ''
   })
+
 
   useEffect(() => {
     apiGetHotelsList();
@@ -52,6 +52,32 @@ function CustomerView() {
       [name]: value
     })
   }
+
+  const HandleSearch = () => {
+    const filteredHotels = initialHotelRoomList.filter((hotel) => {
+      if (querySearch.city === '' && querySearch.guestsQuantity !== '') {
+        return hotel.number_guests === +querySearch.guestsQuantity;
+      }
+
+      if (querySearch.city !== '' && querySearch.guestsQuantity === '') {
+        return hotel.city.toLowerCase().includes(querySearch.city.toLowerCase())
+      }
+
+      return hotel.city.toLowerCase().includes(querySearch.city.toLowerCase()) &&
+        hotel.number_guests === +querySearch.guestsQuantity;
+    });
+
+    setHotelRoomList(filteredHotels)
+  }
+
+  const handleReset = () => {
+    setHotelRoomList(initialHotelRoomList);
+    setQuerySearch({
+      ...querySearch,
+      city: '',
+      guestsQuantity: ''
+    })
+  };
 
   return (
     <div className={styles.main}>
@@ -78,16 +104,13 @@ function CustomerView() {
       <ContainerTitleView>
         <TitleView text='Buscar hoteles' />
       </ContainerTitleView>
-      <FormSearch handleChange={handleChange} querySearch={querySearch} />
-      <p>
-        {JSON.stringify(querySearch)}
-      </p>
-      {/* <ContainerList>
-        {listHotels?.map((hotel: ItemHotel) => {
+      <FormSearch mainOnClick={() => HandleSearch()} onClick={() => handleReset()} handleChange={handleChange} querySearch={querySearch} />
+      <ContainerList customStyle={{ height: 'calc(100vh - 240px)' }}>
+        {hotelRoomList?.map((hotelRoom: ItemRoomSearch) => {
           return (
-            <CustomCardHotel
-              key={hotel.id} item={hotel}
-              onClick={() => apiGetHotel(hotel.id)}
+            <CustomCardHotelRoom
+              key={hotelRoom.id} item={hotelRoom}
+              onClick={() => apiGetHotel(+hotelRoom.id)}
               onClickIcon={() => {
                 const isAvailableApi = true
                 apiUpdateHotel(hotel, isAvailableApi)
@@ -95,7 +118,7 @@ function CustomerView() {
             />
           )
         })}
-      </ContainerList> */}
+      </ContainerList>
     </div>
   );
 }

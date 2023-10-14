@@ -13,16 +13,6 @@
   opacity: 0.9;
 }
 
-.opacityAvailable {
-  opacity: 0.5;
-}
-
-.rating {
-  right: 5px;
-  position: absolute;
-  color: var(--COLOR-ACCENT-GOLD);
-}
-
 .figure {
   margin: 0;
   width: 100%;
@@ -57,19 +47,14 @@
 
 .buttonSection {
   display: flex;
-  font-size: 2rem;
+  font-size: 1.2rem;
   justify-content: center;
-}
-
-.icon {
-  margin: 3px;
-  cursor: pointer;
-  padding: 0.2rem;
   transition: transform 0.3s;
   color: var(--PRIMARY-COLOR);
+  font-family: var(--FONT-BOLD);
 }
 
-.icon:hover {
+.buttonSection:hover {
   color: white;
   border-radius: 7px;
   transform: scale(1.1);
