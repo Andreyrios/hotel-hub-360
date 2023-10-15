@@ -12,14 +12,16 @@ import { useAppDispatch, useAppSelector } from "../../interfaces/redux";
 import { setInfoUser } from "../../redux/Actions/userActions";
 // Utils
 import { pathName } from "../../utils/pathName";
+import alertInformation from "../../utils/alertInformation";
 import { USERS_PERMISSIONS } from "../../utils/userPermissions";
 // Styles
 import styles from './Login.module.css'
 
 interface User {
-  id: number,
-  name: string,
-  lastName: string,
+  id: number
+  name: string
+  email: string
+  lastName: string
   permissions: string[]
 }
 
@@ -58,6 +60,7 @@ function Login() {
     id: 10,
     name: 'Jhon',
     lastName: 'Doe',
+    email: loginInfo.email,
     permissions: loginInfo.email === 'admin@admin.com' ? [USERS_PERMISSIONS.admin] : [USERS_PERMISSIONS.customer]
   }
 
@@ -90,7 +93,12 @@ function Login() {
     if (isValidData) {
       login()
     } else {
-      alert('Datos invalidos')
+      alertInformation({
+        title: 'Datos incorrectos',
+        message: 'Ingresa Usuario y contraseñas validas',
+        icon: 'warning',
+        color: 'var(--COLOR-WARNING)'
+      })
     }
   }
 

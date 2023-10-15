@@ -6,6 +6,7 @@ import { getHotels } from "../Api/hotels/getHotels";
 import { updateHotel } from "../Api/hotels/updateHotel";
 // Interfaces
 import { ItemHotel } from "../interfaces/generalInterfaces";
+import alertInformation from "../utils/alertInformation";
 import { CreateItemHotel } from './../interfaces/generalInterfaces';
 
 function useHotels() {
@@ -24,9 +25,21 @@ function useHotels() {
         setListHotels(data);
       } else {
         console.error('Error fetching Hotel:', errored);
+        alertInformation({
+          icon: 'error',
+          title: 'Upps',
+          color: 'var(--COLOR-DANGER)',
+          message: 'Ha ocurrido un error, pero no te preocupes lo estamos revisando',
+        })
       }
     } catch (error) {
       console.error('Error fetching Hotel:', error);
+      alertInformation({
+        icon: 'error',
+        title: 'Upps',
+        color: 'var(--COLOR-DANGER)',
+        message: 'Ha ocurrido un error, pero no te preocupes lo estamos revisando',
+      })
     } finally {
       setLoading(false);
     }
@@ -42,9 +55,21 @@ function useHotels() {
         setIsModalDetailHotel(true)
       } else {
         console.error('Error fetching Hotel:', errored);
+        alertInformation({
+          icon: 'error',
+          title: 'Upps',
+          color: 'var(--COLOR-DANGER)',
+          message: 'Ha ocurrido un error, pero no te preocupes lo estamos revisando',
+        })
       }
     } catch (error) {
       console.error('Error fetching Hotel:', error);
+      alertInformation({
+        icon: 'error',
+        title: 'Upps',
+        color: 'var(--COLOR-DANGER)',
+        message: 'Ha ocurrido un error, pero no te preocupes lo estamos revisando',
+      })
     } finally {
       setLoading(false);
     }
@@ -59,13 +84,31 @@ function useHotels() {
       const response = await updateHotel(dataHotel, dataHotel.id);
       const { errored } = response;
       if (!errored) {
+        alertInformation({
+          icon: 'success',
+          title: 'Exitos',
+          color: 'var(--SECONDARY-COLOR)',
+          message: 'El hotel ha sido actualizado con exito',
+        })
         apiGetHotelsList()
         setIsModalDetailHotel(false)
       } else {
         console.error('Error fetching Hotel:', errored);
+        alertInformation({
+          icon: 'error',
+          title: 'Upps',
+          color: 'var(--COLOR-DANGER)',
+          message: 'Ha ocurrido un error, pero no te preocupes lo estamos revisando',
+        })
       }
     } catch (error) {
       console.error('Error fetching Hotel:', error);
+      alertInformation({
+        icon: 'error',
+        title: 'Upps',
+        color: 'var(--COLOR-DANGER)',
+        message: 'Ha ocurrido un error, pero no te preocupes lo estamos revisando',
+      })
     } finally {
       setLoading(false);
     }
@@ -77,13 +120,31 @@ function useHotels() {
       const response = await createHotel(dataHotel);
       const { errored } = response;
       if (!errored) {
+        alertInformation({
+          icon: 'success',
+          title: 'Exitos',
+          color: 'var(--SECONDARY-COLOR)',
+          message: 'El hotel ha sido creado con exito',
+        })
         apiGetHotelsList()
         setIsModalCreateHotel(false)
       } else {
         console.error('Error fetching Hotel:', errored);
+        alertInformation({
+          icon: 'error',
+          title: 'Upps',
+          color: 'var(--COLOR-DANGER)',
+          message: 'Ha ocurrido un error, pero no te preocupes lo estamos revisando',
+        })
       }
     } catch (error) {
       console.error('Error fetching Hotel:', error);
+      alertInformation({
+        icon: 'error',
+        title: 'Upps',
+        color: 'var(--COLOR-DANGER)',
+        message: 'Ha ocurrido un error, pero no te preocupes lo estamos revisando',
+      })
     } finally {
       setLoading(false);
     }

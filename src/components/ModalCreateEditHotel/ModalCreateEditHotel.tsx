@@ -14,8 +14,9 @@ import TitleView from '../TitleView/TitleView';
 import CustomButton from '../CustomButton/CustomButton';
 import ContainerTitleView from '../ContainerTitleView/ContainerTitleView';
 // Utils
-import { dataToCreateHotel } from '../../utils/dataToCreateHotel';
 import { pathName } from '../../utils/pathName';
+import alertInformation from '../../utils/alertInformation';
+import { dataToCreateHotel } from '../../utils/dataToCreateHotel';
 
 interface Props {
   show: boolean
@@ -45,6 +46,17 @@ function ModalCreateEditHotel({ show, onHide, title, dataHotelProps, mainClick }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    const { nit, star } = dataHotel
+    if (nit === 0 || star === 0) {
+      alertInformation({
+        icon: 'warning',
+        title: 'Datos incorrectos',
+        color: 'var(--COLOR-WARNING)',
+        message: 'Nit y número de estrellas no deben ser 0 ni vacios',
+      })
+      return
+    }
 
     try {
       mainClick(dataHotel);

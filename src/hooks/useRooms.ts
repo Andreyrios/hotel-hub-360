@@ -6,6 +6,7 @@ import { updateRoom } from "../Api/rooms/updateRoom";
 import { createRoom } from "../Api/rooms/createRoom";
 // Interfaces
 import { ItemRoom } from "../interfaces/generalInterfaces";
+import alertInformation from "../utils/alertInformation";
 
 interface Props {
   idHotel: number
@@ -27,9 +28,21 @@ function useRooms({ idHotel }: Props) {
         setListRooms(data);
       } else {
         console.error('Error fetching Hotel:', errored);
+        alertInformation({
+          icon: 'error',
+          title: 'Upps',
+          color: 'var(--COLOR-DANGER)',
+          message: 'Ha ocurrido un error, pero no te preocupes lo estamos revisando',
+        })
       }
     } catch (error) {
       console.error('Error fetching Hotel:', error);
+      alertInformation({
+        icon: 'error',
+        title: 'Upps',
+        color: 'var(--COLOR-DANGER)',
+        message: 'Ha ocurrido un error, pero no te preocupes lo estamos revisando',
+      })
     } finally {
       setLoading(false);
     }
@@ -45,9 +58,21 @@ function useRooms({ idHotel }: Props) {
         setIsModalDetailRoom(true)
       } else {
         console.error('Error fetching Room:', errored);
+        alertInformation({
+          icon: 'error',
+          title: 'Upps',
+          color: 'var(--COLOR-DANGER)',
+          message: 'Ha ocurrido un error, pero no te preocupes lo estamos revisando',
+        })
       }
     } catch (error) {
       console.error('Error fetching Room:', error);
+      alertInformation({
+        icon: 'error',
+        title: 'Upps',
+        color: 'var(--COLOR-DANGER)',
+        message: 'Ha ocurrido un error, pero no te preocupes lo estamos revisando',
+      })
     } finally {
       setLoading(false);
     }
@@ -64,11 +89,29 @@ function useRooms({ idHotel }: Props) {
       if (!errored) {
         apiGetRoomsList()
         setIsModalDetailRoom(false)
+        alertInformation({
+          icon: 'success',
+          title: 'Exitos',
+          color: 'var(--SECONDARY-COLOR)',
+          message: 'La habitación ha sido actualizado con exito',
+        })
       } else {
         console.error('Error fetching Room:', errored);
+        alertInformation({
+          icon: 'error',
+          title: 'Upps',
+          color: 'var(--COLOR-DANGER)',
+          message: 'Ha ocurrido un error, pero no te preocupes lo estamos revisando',
+        })
       }
     } catch (error) {
       console.error('Error fetching Room:', error);
+      alertInformation({
+        icon: 'error',
+        title: 'Upps',
+        color: 'var(--COLOR-DANGER)',
+        message: 'Ha ocurrido un error, pero no te preocupes lo estamos revisando',
+      })
     } finally {
       setLoading(false);
     }
@@ -82,11 +125,29 @@ function useRooms({ idHotel }: Props) {
       if (!errored) {
         apiGetRoomsList()
         setIsModalCreateRoom(false)
+        alertInformation({
+          icon: 'success',
+          title: 'Exitos',
+          color: 'var(--SECONDARY-COLOR)',
+          message: 'La habitación ha sido actualizado con exito',
+        })
       } else {
         console.error('Error fetching Room:', errored);
+        alertInformation({
+          icon: 'error',
+          title: 'Upps',
+          color: 'var(--COLOR-DANGER)',
+          message: 'Ha ocurrido un error, pero no te preocupes lo estamos revisando',
+        })
       }
     } catch (error) {
       console.error('Error fetching Room:', error);
+      alertInformation({
+        icon: 'error',
+        title: 'Upps',
+        color: 'var(--COLOR-DANGER)',
+        message: 'Ha ocurrido un error, pero no te preocupes lo estamos revisando',
+      })
     } finally {
       setLoading(false);
     }
