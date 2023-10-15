@@ -44,11 +44,11 @@ export interface ItemUser {
   phone: string
   email: string
   document_type: string
-  dni: number,
+  dni: string | number,
   birth_date: string
   gender: string
-  created_at: string
-  id: number
+  created_at?: string
+  id?: number
 }
 
 export interface ItemBooking {

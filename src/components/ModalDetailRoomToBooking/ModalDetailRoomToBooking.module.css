@@ -1,0 +1,102 @@
+.iconsModal {
+  top: 0;
+  right: 0;
+  margin: 3px;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0.2rem;
+  position: absolute;
+  transition: transform 0.3s;
+  color: var(--PRIMARY-COLOR);
+}
+
+.iconsModal:hover {
+  color: white;
+  border-radius: 7px;
+  transform: scale(1.1);
+  background: var(--SECONDARY-COLOR);
+}
+
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.dataUsers {
+  width: 64%;
+  height: 100%;
+  overflow: auto;
+  padding: 0 0.5rem;
+}
+
+.containerData {
+  width: 35%;
+  margin-bottom: 2rem;
+  padding: 0 0.5rem;
+}
+
+.label {
+  margin: 0;
+  font-size: 0.8rem;
+  font-family: var(--FONT-BOLD);
+}
+
+.data {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  font-family: var(--FONT-Medium);
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  justify-content: space-between;
+}
+
+.containerInput {
+  width: 49%;
+}
+
+.addedUser {
+  display: flex;
+  cursor: pointer;
+  border-radius: 5px;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  color: var(--SECONDARY-COLOR);
+  justify-content: space-between;
+  background: var(--COLOR-SUPER-LIGHT);
+}
+
+.addedUser > span {
+  font-family: var(--FONT-MEDIUM);
+}
+
+.addedUser > svg {
+  color: var(--COLOR-TEXT);
+}
+
+@media (max-width: 991px) {
+  .dataUsers {
+    width: 100%;
+  }
+
+  .containerData {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .dataUsers {
+    width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .containerInput {
+    width: 100%;
+  }
+}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 // Styles
 import styles from "./CustomerView.module.css"
 // Components
@@ -7,28 +7,22 @@ import TitleView from "../../components/TitleView/TitleView";
 import ContainerList from "../../components/ContainerList/ContainerList";
 import CustomCardHotelRoom from "./components/CustomCardHotelRoom/CustomCardHotelRoom";
 import ContainerTitleView from "../../components/ContainerTitleView/ContainerTitleView";
-import ModalCreateEditHotel from "../../components/ModalCreateEditHotel/ModalCreateEditHotel";
 // Custom Hooks
-import useHotels from "../../hooks/useHotels";
+import useCustomerBooking from "../../hooks/useCustomerBooking";
 // Interfaces
 import { ItemRoomSearch, QuerySearch } from "../../interfaces/generalInterfaces";
 import FormSearch from "./components/FormSearch/FormSearch";
 // Utils
 import { LIST_ROOMS_TO_HOTEL } from "../../utils/listRoomsHotel";
+import ModalDetailRoomToBooking from "../../components/ModalDetailRoomToBooking/ModalDetailRoomToBooking";
 
 function CustomerView() {
   const {
-    hotel,
     loading,
-    // listHotels,
-    apiGetHotel,
-    apiUpdateHotel,
-    apiCreateHotel,
-    apiGetHotelsList,
-    isModalCreateHotel,
-    isModalDetailHotel,
-    setIsModalDetailHotel,
-    setIsModalCreateHotel, } = useHotels();
+    dataRoomToBooking,
+    openModalWithDataRoom,
+    isModalCustomerBooking,
+    setIsModalCustomerBooking } = useCustomerBooking();
 
   const today = new Date().toISOString().substr(0, 10);
 
@@ -41,11 +35,6 @@ function CustomerView() {
     guestsQuantity: ''
   })
 
-
-  useEffect(() => {
-    apiGetHotelsList();
-  }, [apiGetHotelsList]);
-
   const handleChange = (name: string, value: string) => {
     setQuerySearch({
       ...querySearch,
@@ -53,7 +42,12 @@ function CustomerView() {
     })
   }
 
-  const HandleSearch = () => {
+  const handleSearch = () => {
+    if (querySearch.city === '' && querySearch.guestsQuantity === '') {
+      setHotelRoomList(initialHotelRoomList)
+      return
+    }
+
     const filteredHotels = initialHotelRoomList.filter((hotel) => {
       if (querySearch.city === '' && querySearch.guestsQuantity !== '') {
         return hotel.number_guests === +querySearch.guestsQuantity;
@@ -73,48 +67,39 @@ function CustomerView() {
   const handleReset = () => {
     setHotelRoomList(initialHotelRoomList);
     setQuerySearch({
-      ...querySearch,
       city: '',
+      checkOut: '',
+      checkIn: today,
       guestsQuantity: ''
     })
   };
 
   return (
     <div className={styles.main}>
-      {hotel &&
-        <ModalCreateEditHotel
-          dataHotelProps={hotel}
-          show={isModalDetailHotel}
-          title='Información del hotel'
-          mainClick={(dataHotela: any) => {
-            apiUpdateHotel(dataHotela)
-          }}
-          onHide={() => setIsModalDetailHotel(false)}
+      {dataRoomToBooking &&
+        <ModalDetailRoomToBooking
+          data={dataRoomToBooking}
+          show={isModalCustomerBooking}
+          onHide={() => setIsModalCustomerBooking(false)}
         />
       }
-      <ModalCreateEditHotel
-        title='Crear hotel'
-        show={isModalCreateHotel}
-        mainClick={(dataHotela: any) => {
-          apiCreateHotel(dataHotela)
-        }}
-        onHide={() => setIsModalCreateHotel(false)}
-      />
       <Loader show={loading} />
       <ContainerTitleView>
         <TitleView text='Buscar hoteles' />
       </ContainerTitleView>
-      <FormSearch mainOnClick={() => HandleSearch()} onClick={() => handleReset()} handleChange={handleChange} querySearch={querySearch} />
-      <ContainerList customStyle={{ height: 'calc(100vh - 240px)' }}>
+      <FormSearch
+        querySearch={querySearch}
+        handleChange={handleChange}
+        onClick={() => handleReset()}
+        mainOnClick={() => handleSearch()}
+      />
+      <ContainerList className={styles.customClass}>
         {hotelRoomList?.map((hotelRoom: ItemRoomSearch) => {
           return (
             <CustomCardHotelRoom
               key={hotelRoom.id} item={hotelRoom}
-              onClick={() => apiGetHotel(+hotelRoom.id)}
-              onClickIcon={() => {
-                const isAvailableApi = true
-                apiUpdateHotel(hotel, isAvailableApi)
-              }}
+              onClick={() => openModalWithDataRoom(hotelRoom)}
+              onClickIcon={() => openModalWithDataRoom(hotelRoom)}
             />
           )
         })}

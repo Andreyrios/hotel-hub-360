@@ -12,14 +12,15 @@
 }
 
 .customTextArea,
+.customSelect,
 .customInput {
   width: 100%;
   border: none;
   outline: none;
   user-select: none;
+  padding: 8px 40px;
   text-align: center;
   border-radius: 20px;
-  padding: 8px 40px 8px 40px;
   color: var(--PRIMARY-COLOR);
   font-family: var(--FONT-SEMIBOLD);
   border: 1px solid var(--PRIMARY-COLOR);
@@ -35,6 +36,15 @@
 .customTextArea {
   border-radius: 7px;
   text-align: initial;
+}
+
+.customSelect {
+  padding: 8px 5px;
+}
+
+option {
+  margin: 0;
+  padding: 0;
 }
 
 .icon {

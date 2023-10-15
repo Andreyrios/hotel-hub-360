@@ -3,7 +3,7 @@ import { ItemRoomSearch } from "../interfaces/generalInterfaces";
 export const LIST_ROOMS_TO_HOTEL: ItemRoomSearch[] = [
   {
     image: "https://loremflickr.com/640/480/brazil,rio?random=1",
-    title_hotel: "Nombre de hotel",
+    title_hotel: "Hotel Dann Cartagena",
     number_guests: 2,
     number: 71737,
     type: "officiis",
@@ -13,13 +13,13 @@ export const LIST_ROOMS_TO_HOTEL: ItemRoomSearch[] = [
     base_price: "985.00",
     tax: "357.00",
     address: "47291 Stehr Fall",
-    city: "Barryboro",
+    city: "Cartagena",
     id: "1",
     hotel_id: "1"
   },
   {
     image: "https://loremflickr.com/640/480/brazil,rio?random=2",
-    title_hotel: "Nombre de hotel",
+    title_hotel: "JW Marriott Hotel Bogotá",
     number_guests: 3,
     number: 77997,
     type: "velites",
@@ -29,13 +29,13 @@ export const LIST_ROOMS_TO_HOTEL: ItemRoomSearch[] = [
     base_price: "922.00",
     tax: "285.00",
     address: "50747 Ledner Path",
-    city: "North Thoraville",
+    city: "Bogotá",
     id: "2",
     hotel_id: "2"
   },
   {
     image: "https://loremflickr.com/640/480/brazil,rio?random=3",
-    title_hotel: "Nombre de hotel",
+    title_hotel: "Movich Hotel de Pereira",
     number_guests: 2,
     number: 2629,
     type: "quas",
@@ -45,13 +45,13 @@ export const LIST_ROOMS_TO_HOTEL: ItemRoomSearch[] = [
     base_price: "715.00",
     tax: "709.00",
     address: "0129 Wilbert Parks",
-    city: "North Alyce",
+    city: "Pereira",
     id: "3",
     hotel_id: "3"
   },
   {
     image: "https://loremflickr.com/640/480/brazil,rio?random=5",
-    title_hotel: "Nombre de hotel",
+    title_hotel: "Hilton Cartagena",
     number_guests: 2,
     number: 28760,
     type: "labore",
@@ -61,13 +61,13 @@ export const LIST_ROOMS_TO_HOTEL: ItemRoomSearch[] = [
     base_price: "171.00",
     tax: "266.00",
     address: "65289 Karine Mountains",
-    city: "Lake Dagmar",
+    city: "Cartagena",
     id: "4",
     hotel_id: "4"
   },
   {
     image: "https://loremflickr.com/640/480/brazil,rio?random=6",
-    title_hotel: "Nombre de hotel",
+    title_hotel: "Hotel Estelar Milla de Oro",
     number_guests: 5,
     number: 23369,
     type: "officiis",
@@ -77,13 +77,13 @@ export const LIST_ROOMS_TO_HOTEL: ItemRoomSearch[] = [
     base_price: "612.00",
     tax: "660.00",
     address: "079 Schultz Well",
-    city: "Pomona",
+    city: "Medellín",
     id: "5",
     hotel_id: "1"
   },
   {
     image: "https://loremflickr.com/640/480/brazil,rio?random=7",
-    title_hotel: "Nombre de hotel",
+    title_hotel: "Hotel Dann Carlton",
     number_guests: 3,
     number: "77998",
     type: "Suite",
@@ -93,13 +93,13 @@ export const LIST_ROOMS_TO_HOTEL: ItemRoomSearch[] = [
     base_price: "930.00",
     tax: "285.00",
     address: "always live street",
-    city: "Washington D.C.",
+    city: "Cali",
     id: "6",
     hotel_id: "2"
   },
   {
     image: "https://loremflickr.com/640/480/brazil,rio?random=8",
-    title_hotel: "Nombre de hotel",
+    title_hotel: "Hotel Diez",
     number_guests: 1,
     number: "337",
     type: "Non et iusto impedit",
@@ -109,13 +109,13 @@ export const LIST_ROOMS_TO_HOTEL: ItemRoomSearch[] = [
     base_price: "975",
     tax: "3",
     address: "Quis earum est in l",
-    city: "Quis rerum ea aute i",
+    city: "Medellín",
     id: "7",
     hotel_id: "1"
   },
   {
     image: "https://loremflickr.com/640/480?random9",
-    title_hotel: "Nombre de hotel",
+    title_hotel: "Hotel NH Collection Royal Smartsuites",
     number_guests: 2,
     number: 59854,
     type: "nisi",
@@ -125,13 +125,13 @@ export const LIST_ROOMS_TO_HOTEL: ItemRoomSearch[] = [
     base_price: "335.00",
     tax: "56.00",
     address: "435 Luettgen Stravenue",
-    city: "South Sim",
+    city: "Bogotá",
     id: "8",
     hotel_id: "1"
   },
   {
     image: "https://loremflickr.com/640/480/brazil,rio?random=10",
-    title_hotel: "Nombre de hotel",
+    title_hotel: "GHL Hotel Capital",
     number_guests: 1,
     number: 65197,
     type: "asperiores",
@@ -141,13 +141,13 @@ export const LIST_ROOMS_TO_HOTEL: ItemRoomSearch[] = [
     base_price: "261.00",
     tax: "718.00",
     address: "906 Fadel Villages",
-    city: "South Selmer",
+    city: "Bogotá",
     id: "9",
     hotel_id: "2"
   },
   {
     image: "https://loremflickr.com/640/480/brazil,rio?random=11",
-    title_hotel: "Nombre de hotel",
+    title_hotel: "Casa Dann Carlton Hotel & SPA",
     number_guests: 2,
     number: 90422,
     type: "reprehenderit",
@@ -157,13 +157,13 @@ export const LIST_ROOMS_TO_HOTEL: ItemRoomSearch[] = [
     base_price: "679.00",
     tax: "272.00",
     address: "553 Hodkiewicz Oval",
-    city: "Nampa",
+    city: "Bogotá",
     id: "10",
     hotel_id: "3"
   },
   {
     image: "https://loremflickr.com/640/480/brazil,rio?random=12",
-    title_hotel: "Nombre de hotel",
+    title_hotel: "Hotel Dann Cartagena",
     number_guests: 4,
     number: 47627,
     type: "rerum",
@@ -173,13 +173,13 @@ export const LIST_ROOMS_TO_HOTEL: ItemRoomSearch[] = [
     base_price: "906.00",
     tax: "456.00",
     address: "970 Smith Walk",
-    city: "Oak Park",
+    city: "Cartagena",
     id: "11",
     hotel_id: "4"
   },
   {
     image: "https://loremflickr.com/640/480/brazil,rio?random=13",
-    title_hotel: "Nombre de hotel",
+    title_hotel: "San Fernando Plaza Hotel",
     number_guests: 2,
     number: 72762,
     type: "laboriosam",
@@ -189,13 +189,13 @@ export const LIST_ROOMS_TO_HOTEL: ItemRoomSearch[] = [
     base_price: "115.00",
     tax: "105.00",
     address: "0575 Dach Mills",
-    city: "Hodkiewiczhaven",
+    city: "Medellín",
     id: "12",
     hotel_id: "1"
   },
   {
     image: "https://loremflickr.com/640/480/brazil,rio?random=14",
-    title_hotel: "Nombre de hotel",
+    title_hotel: "Hotel Dann Cartagena",
     number_guests: 5,
     number: 41045,
     type: "minus",
@@ -205,13 +205,13 @@ export const LIST_ROOMS_TO_HOTEL: ItemRoomSearch[] = [
     base_price: "117.00",
     tax: "635.00",
     address: "8747 Alejandrin Skyway",
-    city: "South Jaydehaven",
+    city: "Cartagena",
     id: "13",
     hotel_id: "2"
   },
   {
     image: "https://loremflickr.com/640/480/brazil,rio?random=15",
-    title_hotel: "Nombre de hotel",
+    title_hotel: "NH Collection Bogotá Andino Royal",
     number_guests: 2,
     number: 60712,
     type: "rem",
@@ -221,13 +221,13 @@ export const LIST_ROOMS_TO_HOTEL: ItemRoomSearch[] = [
     base_price: "186.00",
     tax: "28.00",
     address: "3207 Tianna Skyway",
-    city: "North Susannacester",
+    city: "Bogotá",
     id: "14",
     hotel_id: "3"
   },
   {
     image: "https://loremflickr.com/640/480/brazil,rio?random=16",
-    title_hotel: "Nombre de hotel",
+    title_hotel: "Hotel Dann Cartagena",
     number_guests: 2,
     number: 98168,
     type: "veritatis",
@@ -237,13 +237,13 @@ export const LIST_ROOMS_TO_HOTEL: ItemRoomSearch[] = [
     base_price: "887.00",
     tax: "588.00",
     address: "86177 Gottlieb Light",
-    city: "North Berenice",
+    city: "Cartagena",
     id: "15",
     hotel_id: "4"
   },
   {
     image: "https://loremflickr.com/640/480/brazil,rio?random=17",
-    title_hotel: "Nombre de hotel",
+    title_hotel: "Hotel Dann Carlton Bucaramanga",
     number_guests: 3,
     number: 35395,
     type: "tempora",
@@ -253,13 +253,13 @@ export const LIST_ROOMS_TO_HOTEL: ItemRoomSearch[] = [
     base_price: "398.00",
     tax: "886.00",
     address: "69160 Nelson Road",
-    city: "North Monserratetown",
+    city: "Bucaramanga",
     id: "16",
     hotel_id: "1"
   },
   {
     image: "https://loremflickr.com/640/480/brazil,rio?random=18",
-    title_hotel: "Nombre de hotel",
+    title_hotel: "Hotel Dann Cartagena",
     number_guests: 2,
     number: 6275,
     type: "maiores",
@@ -269,13 +269,13 @@ export const LIST_ROOMS_TO_HOTEL: ItemRoomSearch[] = [
     base_price: "935.00",
     tax: "273.00",
     address: "18702 Walsh Road",
-    city: "McCluretown",
+    city: "Cartagena",
     id: "17",
     hotel_id: "2"
   },
   {
     image: "https://loremflickr.com/640/480/brazil,rio?random=19",
-    title_hotel: "Nombre de hotel",
+    title_hotel: "Hotel Estelar Miraflores",
     number_guests: 2,
     number: 37622,
     type: "est",
@@ -285,13 +285,13 @@ export const LIST_ROOMS_TO_HOTEL: ItemRoomSearch[] = [
     base_price: "419.00",
     tax: "426.00",
     address: "35043 Edmund Wall",
-    city: "North Enrico",
+    city: "Lima",
     id: "18",
     hotel_id: "3"
   },
   {
     image: "https://loremflickr.com/640/480/brazil,rio?random=20",
-    title_hotel: "Nombre de hotel",
+    title_hotel: "Hotel Dann Cartagena",
     number_guests: 4,
     number: 81013,
     type: "iure",
@@ -301,13 +301,13 @@ export const LIST_ROOMS_TO_HOTEL: ItemRoomSearch[] = [
     base_price: "210.00",
     tax: "147.00",
     address: "381 Derick Oval",
-    city: "North Coltenport",
+    city: "Cartagena",
     id: "19",
     hotel_id: "4"
   },
   {
     image: "https://loremflickr.com/640/480/brazil,rio?random=21",
-    title_hotel: "Nombre de hotel",
+    title_hotel: "Hotel Estelar La Fontana",
     number_guests: 2,
     number: 9213,
     type: "eveniet",
@@ -317,8 +317,8 @@ export const LIST_ROOMS_TO_HOTEL: ItemRoomSearch[] = [
     base_price: "938.00",
     tax: "583.00",
     address: "707 Vandervort Dale",
-    city: "Lake Kendall",
+    city: "Bogotá",
     id: "20",
     hotel_id: "1"
   }
-]
+];
