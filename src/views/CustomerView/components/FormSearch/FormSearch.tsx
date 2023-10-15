@@ -6,10 +6,10 @@ import { Button } from 'react-bootstrap';
 import { FaSearch, FaTimes } from 'react-icons/fa';
 
 interface Props {
-  handleChange: (name: string, value: string) => void
-  querySearch: QuerySearch
   onClick?: () => void
+  querySearch: QuerySearch
   mainOnClick?: () => void
+  handleChange: (name: string, value: string) => void
 }
 
 function FormSearch({ handleChange, querySearch, onClick, mainOnClick }: Props) {
@@ -67,12 +67,14 @@ function FormSearch({ handleChange, querySearch, onClick, mainOnClick }: Props) 
             onChange={(e) => handleChange(e.target.name, e.target.value)}
           />
         </label>
-        <Button style={{ marginRight: '1rem' }} type='submit' variant='success'>
-          <FaSearch /> Buscar
-        </Button>
-        <Button onClick={() => { onClick && onClick() }} type='button' variant='success'>
-          <FaTimes /> Reestablecer
-        </Button>
+        <div className={styles.containerButtons}>
+          <Button style={{ marginRight: '1rem' }} type='submit' variant='success'>
+            <FaSearch /> Buscar
+          </Button>
+          <Button onClick={() => { onClick && onClick() }} type='button' variant='success'>
+            <FaTimes /> Reestablecer
+          </Button>
+        </div>
       </form>
     </div>
   )

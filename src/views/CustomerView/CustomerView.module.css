@@ -3,8 +3,28 @@
   padding: 0 4rem;
 }
 
+.customClass {
+  height: calc(100vh - 240px);
+}
+
+@media (max-width: 1100px) {
+  .customClass {
+    height: calc(100vh - 295px);
+  }
+}
+
 @media (max-width: 600px) {
   .main {
     padding: 0 0.5rem;
+  }
+
+  .customClass {
+    height: calc(100vh - 341px);
+  }
+}
+
+@media (max-width: 370px) {
+  .customClass {
+    height: calc(100vh - 385px);
   }
 }

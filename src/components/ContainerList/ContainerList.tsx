@@ -5,11 +5,12 @@ import styles from './ContainerList.module.css'
 interface Props {
   children: ReactNode
   customStyle?: CSSProperties | undefined
+  className?: string
 }
 
-function ContainerList({ children, customStyle }: Props) {
+function ContainerList({ children, customStyle, className }: Props) {
   return (
-    <div className={styles.mainContainer} style={customStyle}>
+    <div className={`${styles.mainContainer} ${className}`} style={customStyle}>
       {children}
     </div>
   )
