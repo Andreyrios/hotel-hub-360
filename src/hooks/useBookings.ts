@@ -37,7 +37,6 @@ function useBookings() {
       const { data, errored } = response;
       if (!errored) {
         setBooking(data);
-        // setIsModalDetailBooking(true)
         apiGetUsers()
       } else {
         console.error('Error fetching Room:', errored);

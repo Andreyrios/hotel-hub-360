@@ -55,7 +55,7 @@ export interface ItemBooking {
   user_id: number
   room_id: number
   quantity_room: number
-  number_guests: number
+  number_guests: string | number
   price: string
   checkIn: string
   checkOut: string
@@ -63,6 +63,8 @@ export interface ItemBooking {
   created_at: string
   id: number
   user_name: string
+  city: string
+  list_guests: string
 }
 
 export interface QuerySearch {
