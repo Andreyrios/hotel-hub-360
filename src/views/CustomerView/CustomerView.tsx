@@ -22,7 +22,8 @@ function CustomerView() {
     dataRoomToBooking,
     openModalWithDataRoom,
     isModalCustomerBooking,
-    setIsModalCustomerBooking } = useCustomerBooking();
+    setIsModalCustomerBooking,
+    apiCreateCustomerBooking } = useCustomerBooking();
 
   const today = new Date().toISOString().substr(0, 10);
 
@@ -30,7 +31,7 @@ function CustomerView() {
   const [hotelRoomList, setHotelRoomList] = useState<ItemRoomSearch[]>(initialHotelRoomList);
   const [querySearch, setQuerySearch] = useState<QuerySearch>({
     city: '',
-    checkOut: '',
+    checkOut: today,
     checkIn: today,
     guestsQuantity: ''
   })
@@ -68,7 +69,7 @@ function CustomerView() {
     setHotelRoomList(initialHotelRoomList);
     setQuerySearch({
       city: '',
-      checkOut: '',
+      checkOut: today,
       checkIn: today,
       guestsQuantity: ''
     })
@@ -79,7 +80,9 @@ function CustomerView() {
       {dataRoomToBooking &&
         <ModalDetailRoomToBooking
           data={dataRoomToBooking}
+          querySearch={querySearch}
           show={isModalCustomerBooking}
+          apiCreateCustomerBooking={apiCreateCustomerBooking}
           onHide={() => setIsModalCustomerBooking(false)}
         />
       }

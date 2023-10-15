@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 // Styles
 import styles from './ModalDetailBooking.module.css'
 // Libraries
@@ -21,16 +20,6 @@ interface Props {
 }
 
 function ModalDetailBooking({ show, onHide, dataBooking, users }: Props) {
-  const [guests, setGuests] = useState<ItemUser[]>([])
-
-  useEffect(() => {
-    const newGuests: ItemUser[] = []
-    for (let index = 1; index < dataBooking.number_guests; index++) {
-      const user: ItemUser = users[index];
-      newGuests.push(user)
-    }
-    setGuests(newGuests)
-  }, [show, dataBooking.number_guests, users])
 
   return (
     <>
@@ -59,6 +48,8 @@ function ModalDetailBooking({ show, onHide, dataBooking, users }: Props) {
               <p className={styles.data}>{dataBooking.number_guests}</p>
               <p className={styles.label}>Precio</p>
               <p className={styles.data}>{cashFormatter(dataBooking.price)}</p>
+              <p className={styles.label}>Ciudad</p>
+              <p className={styles.data}>{dataBooking.city}</p>
               <p className={styles.label}>Fecha de la reserva</p>
               <p className={styles.data}>{dateFormater(dataBooking.created_at)}</p>
               <p className={styles.label}>Check In</p>
@@ -71,7 +62,7 @@ function ModalDetailBooking({ show, onHide, dataBooking, users }: Props) {
             <div className={styles.dataUsers}>
               <h4>Huespedes</h4>
               <div>
-                {guests?.map(user => {
+                {JSON.parse(dataBooking.list_guests)?.map((user: any) => {
                   return (
                     <div className={styles.user} key={user.id} >
                       <div className={styles.containerData}>

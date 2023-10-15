@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // Styles
 import styles from './ModalDetailRoomToBooking.module.css'
 // Libraries
 import { FaTimes } from 'react-icons/fa';
 import Modal from 'react-bootstrap/Modal';
-import { Alert, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 // Interfaces
-import { ItemRoomSearch, ItemUser } from '../../interfaces/generalInterfaces';
+import { ItemRoomSearch, ItemUser, QuerySearch, ItemBooking } from '../../interfaces/generalInterfaces';
 // Components
 import CustomInput from '../Input/Input';
 import TitleView from '../TitleView/TitleView';
@@ -19,11 +19,14 @@ interface Props {
   show: boolean
   onHide: () => void
   data: ItemRoomSearch
+  querySearch: QuerySearch
+  apiCreateCustomerBooking: (dataToSend: ItemBooking) => void
 }
 
-function ModalDetailRoomToBooking({ show, onHide, data }: Props) {
+function ModalDetailRoomToBooking({ show, onHide, data, querySearch, apiCreateCustomerBooking }: Props) {
+  const today = new Date().toISOString().substr(0, 10);
+  const [comments, setComments] = useState('')
   const [guestsList, setGuestsList] = useState<ItemUser[]>([])
-  const [showErrorAlert, setShowErrorAlert] = useState(false);
   const [dataGuest, setDataGuest] = useState<ItemUser>({
     dni: '',
     email: '',
@@ -34,6 +37,11 @@ function ModalDetailRoomToBooking({ show, onHide, data }: Props) {
     first_name: '',
     document_type: '',
   })
+
+  useEffect(() => {
+    setGuestsList([])
+  }, [show])
+
 
   const handleClick = () => {
     const { dni, email, last_name, birth_date, first_name, document_type } = dataGuest
@@ -69,6 +77,24 @@ function ModalDetailRoomToBooking({ show, onHide, data }: Props) {
     setGuestsList(updatedGuestsList);
   };
 
+  const handleClickBooking = () => {
+    const dataToSend: ItemBooking = {
+      id: 0,
+      user_id: 0,
+      room_id: 0,
+      city: data.city,
+      quantity_room: 1,
+      created_at: today,
+      comment: comments,
+      price: data.base_price,
+      checkIn: querySearch.checkIn,
+      checkOut: querySearch.checkOut,
+      number_guests: guestsList.length,
+      list_guests: JSON.stringify(guestsList),
+      user_name: `${guestsList[0].first_name} ${guestsList[0].last_name}`,
+    }
+    apiCreateCustomerBooking(dataToSend)
+  }
   return (
     <>
       <Modal
@@ -76,7 +102,6 @@ function ModalDetailRoomToBooking({ show, onHide, data }: Props) {
         centered
         show={show}
         onHide={() => {
-          setGuestsList([])
           onHide()
         }}
         aria-labelledby='contained-modal-title-vcenter'
@@ -89,7 +114,6 @@ function ModalDetailRoomToBooking({ show, onHide, data }: Props) {
             <FaTimes
               className={styles.iconsModal}
               onClick={() => {
-                setGuestsList([])
                 onHide()
               }}
             />
@@ -221,12 +245,6 @@ function ModalDetailRoomToBooking({ show, onHide, data }: Props) {
                         onChange={(e) => handleChange(e.target.name, e.target.value)}
                       />
                     </div>
-
-                    {showErrorAlert && (
-                      <Alert variant="danger" onClose={() => setShowErrorAlert(false)} dismissible>
-                        <p>completa todos los campos obligatorios antes de continuar.</p>
-                      </Alert>
-                    )}
                     <Button
                       variant='success'
                       style={{ marginInlineStart: 'auto' }}
@@ -235,17 +253,24 @@ function ModalDetailRoomToBooking({ show, onHide, data }: Props) {
                     </Button>
                   </form>
                 }
-
-
-
-
                 {guestsList.length === data.number_guests &&
-                  <Button
-                    variant='success'
-                    style={{ marginInlineStart: 'auto' }}
-                    onClick={handleClick}>
-                    Reservar ahora
-                  </Button>
+                  <>
+                    <CustomInput
+                      isTextArea
+                      type='text'
+                      name='comments'
+                      value={comments}
+                      textLabel='Observaciones'
+                      placeholder='Ingresa aquí todas tus observaciones'
+                      onChange={(e) => setComments(e.target.value)}
+                    />
+                    <Button
+                      variant='success'
+                      style={{ marginInlineStart: 'auto' }}
+                      onClick={handleClickBooking}>
+                      Reservar ahora
+                    </Button>
+                  </>
                 }
               </div>
             </div>
