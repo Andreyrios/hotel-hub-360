@@ -34,7 +34,7 @@ function useCustomerBooking() {
         console.error('Error fetching Create Booking:', errored);
         alertInformation({
           icon: 'error',
-          color: 'var(----COLOR-DANGER)',
+          color: 'var(--COLOR-DANGER)',
           title: 'Upps, ha ocurrido un error',
           message: 'Pero no te preocupes lo estamos revisando'
         })
