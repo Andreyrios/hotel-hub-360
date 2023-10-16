@@ -58,6 +58,5 @@ Si deseas ejecutar la aplicación en tu entorno de desarrollo local, sigue estos
 
 1. Clona este repositorio.
 2. Ejecuta `npm install` para instalar las dependencias.
-3. Crea un archivo `.env` en la raiz del proyecto y coloca las variables de entorno.
-4. Ejecuta `npm start .env` para iniciar la aplicación con las variables de entorno en modo de desarrollo.
-5. Abre tu navegador y accede a `http://localhost:3000`.
+3. Ejecuta `npm start` para iniciar la aplicación en modo de desarrollo.
+4. Abre tu navegador y accede a `http://localhost:3000`.
