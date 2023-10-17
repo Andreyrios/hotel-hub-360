@@ -16,14 +16,7 @@ import alertInformation from "../../utils/alertInformation";
 import { USERS_PERMISSIONS } from "../../utils/userPermissions";
 // Styles
 import styles from './Login.module.css'
-
-interface User {
-  id: number
-  name: string
-  email: string
-  lastName: string
-  permissions: string[]
-}
+import isAuthAdmin from "../../utils/authenticate";
 
 function Login() {
   const userReducer = useAppSelector((state) => state.userReducer);
@@ -56,33 +49,41 @@ function Login() {
     })
   }
 
-  const user: User = {
-    id: 10,
-    name: 'Jhon',
-    lastName: 'Doe',
-    email: loginInfo.email,
-    permissions: loginInfo.email === 'admin@admin.com' ? [USERS_PERMISSIONS.admin] : [USERS_PERMISSIONS.customer]
-  }
-
   const login = () => {
-    setLoading(true)
-    setTimeout(() => {
-      dispatch(
-        setInfoUser({
-          ...userReducer,
-          user: user
+
+    if (isAuthAdmin(loginInfo).error) {
+      alertInformation({
+        message: 'El usuario o la contraseña son incorrectas',
+        title: 'Error',
+        icon: 'error',
+        color: 'var(--COLOR-DANGER)'
+      })
+    } else {
+      setLoading(true)
+      setTimeout(() => {
+        alertInformation({
+          message: 'Bienvenido de vuelta',
+          title: 'Hola',
+          icon: 'success',
+          color: 'var(--SECONDARY-COLOR)'
         })
-      );
-      setLoading(false)
-      if (user.permissions.includes(USERS_PERMISSIONS.admin)) {
-        navigate(pathName.main);
-        return
-      }
-      if (user.permissions.includes(USERS_PERMISSIONS.customer)) {
-        navigate(pathName.main);
-        return
-      }
-    }, 2000)
+        dispatch(
+          setInfoUser({
+            ...userReducer,
+            user: isAuthAdmin(loginInfo).userToLogin
+          })
+        );
+        setLoading(false)
+        if (isAuthAdmin(loginInfo)?.userToLogin?.permissions.includes(USERS_PERMISSIONS.admin)) {
+          navigate(pathName.main);
+          return
+        }
+        if (isAuthAdmin(loginInfo)?.userToLogin?.permissions.includes(USERS_PERMISSIONS.customer)) {
+          navigate(pathName.main);
+          return
+        }
+      }, 2000)
+    }
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
