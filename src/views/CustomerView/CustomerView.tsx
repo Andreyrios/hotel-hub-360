@@ -51,7 +51,7 @@ function CustomerView() {
 
     const filteredHotels = initialHotelRoomList.filter((hotel) => {
       if (querySearch.city === '' && querySearch.guestsQuantity !== '') {
-        return hotel.number_guests === +querySearch.guestsQuantity;
+        return hotel.number_guests >= +querySearch.guestsQuantity;
       }
 
       if (querySearch.city !== '' && querySearch.guestsQuantity === '') {
@@ -59,7 +59,7 @@ function CustomerView() {
       }
 
       return hotel.city.toLowerCase().includes(querySearch.city.toLowerCase()) &&
-        hotel.number_guests === +querySearch.guestsQuantity;
+        hotel.number_guests >= +querySearch.guestsQuantity;
     });
 
     setHotelRoomList(filteredHotels)
