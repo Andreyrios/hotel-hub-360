@@ -1,6 +1,6 @@
 export const dataToCreateRoom = {
   image: '',
-  number: -1,
+  number: '',
   type: '',
   description: '',
   created_at: '',
@@ -11,4 +11,5 @@ export const dataToCreateRoom = {
   city: '',
   id: -1,
   hotel_id: -1,
+  number_guests: ''
 }

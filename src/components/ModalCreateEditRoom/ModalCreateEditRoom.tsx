@@ -116,7 +116,18 @@ function ModalCreateEditRoom({ show, onHide, title, dataRoomProps, mainClick }: 
                 type='number'
                 textLabel='Habitación'
                 value={`${dataRoom.number}`}
-                placeholder='Número de Habitación'
+                placeholder='Nro Habitación'
+                disabled={dataRoomProps ? !isEdit : false}
+                onChange={(e) => handleChange(e.target.name, e.target.value)}
+              />
+            </div>
+            <div className={styles.containerInputSmall}>
+              <CustomInput
+                type='number'
+                name='number_guests'
+                textLabel='Huespedes'
+                value={`${dataRoom.number_guests}`}
+                placeholder='Cantidad de huespedes'
                 disabled={dataRoomProps ? !isEdit : false}
                 onChange={(e) => handleChange(e.target.name, e.target.value)}
               />
