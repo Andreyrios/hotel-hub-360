@@ -6,7 +6,7 @@ import { FaTimes } from 'react-icons/fa';
 import Modal from 'react-bootstrap/Modal';
 import { Button } from 'react-bootstrap';
 // Interfaces
-import { ItemUser, QuerySearch, ItemBooking, ItemRoom } from '../../interfaces/generalInterfaces';
+import { ItemUser, QuerySearch, ItemBooking, ItemRoom, ItemHotel } from '../../interfaces/generalInterfaces';
 // Components
 import CustomInput from '../Input/Input';
 import TitleView from '../TitleView/TitleView';
@@ -19,12 +19,12 @@ interface Props {
   show: boolean
   onHide: () => void
   data: ItemRoom
-  hotelName: string
+  dataHotel?: ItemHotel
   querySearch: QuerySearch
   apiCreateCustomerBooking: (dataToSend: ItemBooking) => void
 }
 
-function ModalDetailRoomToBooking({ show, onHide, data, querySearch, apiCreateCustomerBooking, hotelName }: Props) {
+function ModalDetailRoomToBooking({ show, onHide, data, querySearch, apiCreateCustomerBooking, dataHotel }: Props) {
   const today = new Date().toISOString().substr(0, 10);
   const [comments, setComments] = useState('')
   const [guestsList, setGuestsList] = useState<ItemUser[]>([])
@@ -42,7 +42,6 @@ function ModalDetailRoomToBooking({ show, onHide, data, querySearch, apiCreateCu
   useEffect(() => {
     setGuestsList([])
   }, [show])
-
 
   const handleClick = () => {
     const { dni, email, last_name, birth_date, first_name, document_type } = dataGuest
@@ -81,15 +80,17 @@ function ModalDetailRoomToBooking({ show, onHide, data, querySearch, apiCreateCu
   const handleClickBooking = () => {
     const dataToSend: ItemBooking = {
       id: 0,
-      city: '',
       user_id: 0,
       room_id: 0,
       quantity_room: 1,
       created_at: today,
       comment: comments,
+      room_type: data.type,
       price: data.base_price,
+      city: `${dataHotel?.city}`,
       checkIn: querySearch.checkIn,
       checkOut: querySearch.checkOut,
+      hotel_name: `${dataHotel?.name}`,
       number_guests: guestsList.length,
       list_guests: JSON.stringify(guestsList),
       user_name: `${guestsList[0].first_name} ${guestsList[0].last_name}`,
@@ -123,7 +124,7 @@ function ModalDetailRoomToBooking({ show, onHide, data, querySearch, apiCreateCu
           <div className={styles.main}>
             <div className={styles.containerData}>
               <p className={styles.label}>Nombre</p>
-              <p className={styles.data}>{hotelName}</p>
+              <p className={styles.data}>{dataHotel?.name}</p>
               <p className={styles.label}>Habitaciones</p>
               <p className={styles.data}>{data.type}</p>
               <p className={styles.label}>Huespedes</p>
@@ -254,7 +255,7 @@ function ModalDetailRoomToBooking({ show, onHide, data, querySearch, apiCreateCu
                     </Button>
                   </form>
                 }
-                {guestsList.length === data.number_guests &&
+                {guestsList.length === +data.number_guests &&
                   <>
                     <CustomInput
                       isTextArea

@@ -42,8 +42,12 @@ function ModalDetailBooking({ show, onHide, dataBooking, users }: Props) {
             <div className={styles.dataBooking}>
               <p className={styles.label}>Nombre</p>
               <p className={styles.data}>{dataBooking.user_name}</p>
+              <p className={styles.label}>Hotel</p>
+              <p className={styles.data}>{dataBooking.hotel_name}</p>
               <p className={styles.label}>Habitaciones</p>
               <p className={styles.data}>{dataBooking.quantity_room}</p>
+              <p className={styles.label}>Tipo de habitación</p>
+              <p className={styles.data}>{dataBooking.room_type}</p>
               <p className={styles.label}>Huespedes</p>
               <p className={styles.data}>{dataBooking.number_guests}</p>
               <p className={styles.label}>Precio</p>

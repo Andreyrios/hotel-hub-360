@@ -37,6 +37,7 @@ function CustomerView() {
 
   const [hotelRoomList, setHotelRoomList] = useState<ItemHotel[]>(listHotels);
   const [roomList, setRoomList] = useState<ItemRoom[]>(listRooms);
+  const [dataHotel, setDataHotel] = useState<ItemHotel>();
   const [querySearch, setQuerySearch] = useState<QuerySearch>({
     city: '',
     checkOut: today,
@@ -105,7 +106,7 @@ function CustomerView() {
     <div className={styles.main}>
       {dataRoomToBooking &&
         <ModalDetailRoomToBooking
-          hotelName={typeView}
+          dataHotel={dataHotel}
           data={dataRoomToBooking}
           querySearch={querySearch}
           show={isModalCustomerBooking}
@@ -136,6 +137,7 @@ function CustomerView() {
                 <CustomCardHotel
                   key={hotel.id} item={hotel}
                   onClick={async () => {
+                    setDataHotel(hotel)
                     await apiGetRoomsList(hotel.id)
                     await setTypeView(hotel.name)
                   }}

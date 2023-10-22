@@ -1,5 +1,5 @@
 // Libraries
-import { MdKingBed, MdLocationPin } from 'react-icons/md';
+import { MdKingBed } from 'react-icons/md';
 import { FaMoneyBillAlt, FaUser } from 'react-icons/fa';
 // Styles
 import styles from './CustomCardHotelRoom.module.css'

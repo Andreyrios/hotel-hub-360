@@ -67,6 +67,8 @@ export interface ItemBooking {
   user_name: string
   city: string
   list_guests: string
+  hotel_name: string
+  room_type: string
 }
 
 export interface QuerySearch {
