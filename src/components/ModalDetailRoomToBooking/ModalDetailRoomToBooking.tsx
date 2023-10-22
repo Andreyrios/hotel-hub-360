@@ -6,7 +6,7 @@ import { FaTimes } from 'react-icons/fa';
 import Modal from 'react-bootstrap/Modal';
 import { Button } from 'react-bootstrap';
 // Interfaces
-import { ItemRoomSearch, ItemUser, QuerySearch, ItemBooking } from '../../interfaces/generalInterfaces';
+import { ItemUser, QuerySearch, ItemBooking, ItemRoom } from '../../interfaces/generalInterfaces';
 // Components
 import CustomInput from '../Input/Input';
 import TitleView from '../TitleView/TitleView';
@@ -18,12 +18,13 @@ import alertInformation from '../../utils/alertInformation';
 interface Props {
   show: boolean
   onHide: () => void
-  data: ItemRoomSearch
+  data: ItemRoom
+  hotelName: string
   querySearch: QuerySearch
   apiCreateCustomerBooking: (dataToSend: ItemBooking) => void
 }
 
-function ModalDetailRoomToBooking({ show, onHide, data, querySearch, apiCreateCustomerBooking }: Props) {
+function ModalDetailRoomToBooking({ show, onHide, data, querySearch, apiCreateCustomerBooking, hotelName }: Props) {
   const today = new Date().toISOString().substr(0, 10);
   const [comments, setComments] = useState('')
   const [guestsList, setGuestsList] = useState<ItemUser[]>([])
@@ -80,9 +81,9 @@ function ModalDetailRoomToBooking({ show, onHide, data, querySearch, apiCreateCu
   const handleClickBooking = () => {
     const dataToSend: ItemBooking = {
       id: 0,
+      city: '',
       user_id: 0,
       room_id: 0,
-      city: data.city,
       quantity_room: 1,
       created_at: today,
       comment: comments,
@@ -122,7 +123,7 @@ function ModalDetailRoomToBooking({ show, onHide, data, querySearch, apiCreateCu
           <div className={styles.main}>
             <div className={styles.containerData}>
               <p className={styles.label}>Nombre</p>
-              <p className={styles.data}>{data.title_hotel}</p>
+              <p className={styles.data}>{hotelName}</p>
               <p className={styles.label}>Habitaciones</p>
               <p className={styles.data}>{data.type}</p>
               <p className={styles.label}>Huespedes</p>
@@ -150,7 +151,7 @@ function ModalDetailRoomToBooking({ show, onHide, data, querySearch, apiCreateCu
                     )
                   })}
                 </div>
-                {guestsList.length < data.number_guests &&
+                {guestsList.length < +data.number_guests &&
                   <form className={styles.form}>
                     <div className={styles.containerInput}>
                       <CustomInput

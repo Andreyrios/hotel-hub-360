@@ -1,4 +1,5 @@
 export interface ItemHotel {
+  id: number
   nit: number
   phone: string
   email: string
@@ -8,7 +9,7 @@ export interface ItemHotel {
   created_at: string
   name: string
   image: string
-  id: number
+  city: string
 }
 
 export interface CreateItemHotel {
@@ -21,6 +22,7 @@ export interface CreateItemHotel {
   name: string
   image: string
   id: number
+  city: string
 }
 
 export interface ItemRoom {
@@ -33,10 +35,9 @@ export interface ItemRoom {
   base_price: string
   tax: string
   number_guests: string | number
-  address: string
-  city: string
   id: number
   hotel_id: number
+  title_hotel: string
 }
 
 export interface ItemUser {
@@ -73,21 +74,4 @@ export interface QuerySearch {
   checkOut: string
   checkIn: string,
   guestsQuantity: number | string
-}
-
-export interface ItemRoomSearch {
-  image: string
-  title_hotel: string
-  number_guests: number,
-  number: number | string,
-  type: string
-  description: string
-  created_at: string
-  available: boolean,
-  base_price: string
-  tax: string
-  address: string
-  city: string
-  id: string
-  hotel_id: string
 }

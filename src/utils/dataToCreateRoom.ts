@@ -7,9 +7,8 @@ export const dataToCreateRoom = {
   available: true,
   base_price: '',
   tax: '',
-  address: '',
-  city: '',
   id: -1,
   hotel_id: -1,
-  number_guests: ''
+  number_guests: '',
+  title_hotel: ''
 }

@@ -154,30 +154,7 @@ function ModalCreateEditRoom({ show, onHide, title, dataRoomProps, mainClick }: 
                 onChange={(e) => handleChange(e.target.name, e.target.value)}
               />
             </div>
-            <div className={styles.containerInputBig}>
-              <CustomInput
-                type='text'
-                name='address'
-                textLabel='Dirección'
-                value={dataRoom.address}
-                placeholder='Ingresa la Dirección'
-                disabled={dataRoomProps ? !isEdit : false}
-                onChange={(e) => handleChange(e.target.name, e.target.value)}
-              />
-            </div>
-            <div className={styles.containerInputBig}>
-              <CustomInput
-                type='text'
-                name='city'
-                textLabel='Ciudad'
-                value={dataRoom.city}
-                placeholder='Ingresa la Ciudad'
-                disabled={dataRoomProps ? !isEdit : false}
-                onChange={(e) => handleChange(e.target.name, e.target.value)}
-              />
-            </div>
 
-            {/* <div className={styles.containerInputBig}> */}
             <CustomInput
               isTextArea
               type='text'
@@ -188,7 +165,6 @@ function ModalCreateEditRoom({ show, onHide, title, dataRoomProps, mainClick }: 
               disabled={dataRoomProps ? !isEdit : false}
               onChange={(e) => handleChange(e.target.name, e.target.value)}
             />
-            {/* </div> */}
 
             {isEdit &&
               <div className={styles.containerButtons}>

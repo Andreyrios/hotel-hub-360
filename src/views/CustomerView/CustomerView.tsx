@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // Styles
 import styles from "./CustomerView.module.css"
 // Components
@@ -6,35 +6,59 @@ import Loader from "../../components/Loader/Loader";
 import TitleView from "../../components/TitleView/TitleView";
 import ContainerList from "../../components/ContainerList/ContainerList";
 import CustomCardHotelRoom from "./components/CustomCardHotelRoom/CustomCardHotelRoom";
+import CustomCardHotel from "../HotelsList/components/CustomCardHotel/CustomCardHotel";
 import ContainerTitleView from "../../components/ContainerTitleView/ContainerTitleView";
 // Custom Hooks
+import useHotels from "../../hooks/useHotels";
 import useCustomerBooking from "../../hooks/useCustomerBooking";
 // Interfaces
-import { ItemRoomSearch, QuerySearch } from "../../interfaces/generalInterfaces";
+import { ItemHotel, ItemRoom, QuerySearch } from "../../interfaces/generalInterfaces";
 import FormSearch from "./components/FormSearch/FormSearch";
 // Utils
-import { LIST_ROOMS_TO_HOTEL } from "../../utils/listRoomsHotel";
 import ModalDetailRoomToBooking from "../../components/ModalDetailRoomToBooking/ModalDetailRoomToBooking";
+import { FaArrowLeft } from "react-icons/fa";
 
 function CustomerView() {
   const {
     loading,
+    listRooms,
+    apiGetRoomsList,
     dataRoomToBooking,
     openModalWithDataRoom,
     isModalCustomerBooking,
-    setIsModalCustomerBooking,
-    apiCreateCustomerBooking } = useCustomerBooking();
+    apiCreateCustomerBooking,
+    setIsModalCustomerBooking } = useCustomerBooking();
+
+  const { listHotels, apiGetHotelsList } = useHotels()
+
+  const [typeView, setTypeView] = useState('')
 
   const today = new Date().toISOString().substr(0, 10);
 
-  const initialHotelRoomList: ItemRoomSearch[] = LIST_ROOMS_TO_HOTEL
-  const [hotelRoomList, setHotelRoomList] = useState<ItemRoomSearch[]>(initialHotelRoomList);
+  const [hotelRoomList, setHotelRoomList] = useState<ItemHotel[]>(listHotels);
+  const [roomList, setRoomList] = useState<ItemRoom[]>(listRooms);
   const [querySearch, setQuerySearch] = useState<QuerySearch>({
     city: '',
     checkOut: today,
     checkIn: today,
     guestsQuantity: ''
   })
+
+  useEffect(() => {
+    apiGetHotelsList()
+  }, [apiGetHotelsList])
+
+  useEffect(() => {
+    setHotelRoomList(listHotels)
+  }, [listHotels])
+
+  useEffect(() => {
+    setRoomList(listRooms)
+  }, [listRooms])
+
+  useEffect(() => {
+    setTypeView('')
+  }, [querySearch.city])
 
   const handleChange = (name: string, value: string) => {
     setQuerySearch({
@@ -45,40 +69,43 @@ function CustomerView() {
 
   const handleSearch = () => {
     if (querySearch.city === '' && querySearch.guestsQuantity === '') {
-      setHotelRoomList(initialHotelRoomList)
+      setHotelRoomList(listHotels)
+      setRoomList(listRooms)
       return
     }
 
-    const filteredHotels = initialHotelRoomList.filter((hotel) => {
-      if (querySearch.city === '' && querySearch.guestsQuantity !== '') {
-        return hotel.number_guests >= +querySearch.guestsQuantity;
-      }
-
-      if (querySearch.city !== '' && querySearch.guestsQuantity === '') {
-        return hotel.city.toLowerCase().includes(querySearch.city.toLowerCase())
-      }
-
-      return hotel.city.toLowerCase().includes(querySearch.city.toLowerCase()) &&
-        hotel.number_guests >= +querySearch.guestsQuantity;
+    const filteredHotels = listHotels.filter((hotel) => {
+      return hotel.city.toLowerCase().includes(querySearch.city.toLowerCase())
     });
 
+    const filteredRooms = listRooms.filter((room) => {
+      if (querySearch.city === '' && querySearch.guestsQuantity !== '') {
+        return +room.number_guests >= +querySearch.guestsQuantity;
+      }
+
+      return +room.number_guests >= +querySearch.guestsQuantity;
+    });
+
+    setRoomList(filteredRooms)
     setHotelRoomList(filteredHotels)
   }
 
   const handleReset = () => {
-    setHotelRoomList(initialHotelRoomList);
+    setHotelRoomList(listHotels);
     setQuerySearch({
       city: '',
       checkOut: today,
       checkIn: today,
       guestsQuantity: ''
     })
+    setTypeView('')
   };
 
   return (
     <div className={styles.main}>
       {dataRoomToBooking &&
         <ModalDetailRoomToBooking
+          hotelName={typeView}
           data={dataRoomToBooking}
           querySearch={querySearch}
           show={isModalCustomerBooking}
@@ -88,7 +115,11 @@ function CustomerView() {
       }
       <Loader show={loading} />
       <ContainerTitleView>
-        <TitleView text='Buscar hoteles' />
+        <TitleView
+          onClick={() => setTypeView('')}
+          Icon={typeView !== '' ? FaArrowLeft : null}
+          text={typeView !== '' ? typeView : 'Buscar hoteles'}
+        />
       </ContainerTitleView>
       <FormSearch
         querySearch={querySearch}
@@ -97,15 +128,35 @@ function CustomerView() {
         mainOnClick={() => handleSearch()}
       />
       <ContainerList className={styles.customClass}>
-        {hotelRoomList?.map((hotelRoom: ItemRoomSearch) => {
-          return (
-            <CustomCardHotelRoom
-              key={hotelRoom.id} item={hotelRoom}
-              onClick={() => openModalWithDataRoom(hotelRoom)}
-              onClickIcon={() => openModalWithDataRoom(hotelRoom)}
-            />
-          )
-        })}
+        {typeView === '' ?
+          <>
+            {hotelRoomList?.map((hotel: ItemHotel) => {
+              return (
+                hotel.available &&
+                <CustomCardHotel
+                  key={hotel.id} item={hotel}
+                  onClick={async () => {
+                    await apiGetRoomsList(hotel.id)
+                    await setTypeView(hotel.name)
+                  }}
+                />
+              )
+            })}
+          </>
+          :
+          <>
+            {roomList?.map((hotelRoom: ItemRoom) => {
+              return (
+                hotelRoom.available && +hotelRoom.number_guests >= +querySearch.guestsQuantity &&
+                <CustomCardHotelRoom
+                  key={hotelRoom.id} item={hotelRoom}
+                  onClick={() => openModalWithDataRoom(hotelRoom)}
+                  onClickIcon={() => openModalWithDataRoom(hotelRoom)}
+                />
+              )
+            })}
+          </>
+        }
       </ContainerList>
     </div>
   );

@@ -4,11 +4,12 @@ import { FaMoneyBillAlt, FaUser } from 'react-icons/fa';
 // Styles
 import styles from './CustomCardHotelRoom.module.css'
 // Interfaces
-import { ItemRoomSearch } from '../../../../interfaces/generalInterfaces';
+import { ItemRoom } from '../../../../interfaces/generalInterfaces';
+// Utils
 import cashFormatter from '../../../../utils/cashFormatter';
 
 interface Props {
-  item: ItemRoomSearch
+  item: ItemRoom
   onClick: () => void
   onClickIcon: () => void
 }
@@ -23,10 +24,9 @@ function CustomCardHotelRoom({ item, onClick, onClickIcon }: Props) {
             <img className={styles.img} src={item.image} alt={item.title_hotel} title={item.title_hotel} />
           </figure>
           <div className={styles.InfoCard}>
-            <p className={styles.title}>{item.title_hotel}</p>
+            <p className={styles.title}><MdKingBed /> {item.type}</p>
             <p><FaMoneyBillAlt /> {cashFormatter(item.base_price)} + {item.tax}</p>
             <p><FaUser /> {item.number_guests} - <MdKingBed /> {item.type}</p>
-            <p><MdLocationPin /> {item.address} - {item.city}</p>
             <p>{item.description}</p>
           </div>
           <div
