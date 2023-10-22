@@ -2,7 +2,7 @@
 import styles from './TitleView.module.css'
 
 interface Props {
-  Icon?: React.FC<React.SVGProps<SVGSVGElement>>
+  Icon?: React.FC<React.SVGProps<SVGSVGElement>> | null
   text: string
   onClick?: () => void
 }

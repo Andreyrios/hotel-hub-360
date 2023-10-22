@@ -167,7 +167,6 @@ function ModalCreateEditHotel({ show, onHide, title, dataHotelProps, mainClick }
                 onChange={(e) => handleChange(e.target.name, e.target.value)}
               />
             </div>
-
             <div className={styles.containerInputBig}>
               <CustomInput
                 type='text'
@@ -181,15 +180,24 @@ function ModalCreateEditHotel({ show, onHide, title, dataHotelProps, mainClick }
             </div>
             <div className={styles.containerInputBig}>
               <CustomInput
-                type='url'
-                name='image'
-                value={dataHotel.image}
-                textLabel='Url de la imagen'
-                placeholder='Ingresa la url de la imagen'
+                type='text'
+                name='city'
+                textLabel='Ciudad'
+                value={dataHotel.city}
+                placeholder='Ingresa la Ciudad'
                 disabled={dataHotelProps ? !isEdit : false}
                 onChange={(e) => handleChange(e.target.name, e.target.value)}
               />
             </div>
+            <CustomInput
+              type='url'
+              name='image'
+              value={dataHotel.image}
+              textLabel='Url de la imagen'
+              placeholder='Ingresa la url de la imagen'
+              disabled={dataHotelProps ? !isEdit : false}
+              onChange={(e) => handleChange(e.target.name, e.target.value)}
+            />
 
             {isEdit &&
               <div className={styles.containerButtons}>

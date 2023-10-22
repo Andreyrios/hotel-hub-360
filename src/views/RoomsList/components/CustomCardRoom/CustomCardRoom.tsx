@@ -1,6 +1,5 @@
 // Libraries
-import { MdLocationPin } from 'react-icons/md';
-import { FaDollarSign, FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaDollarSign, FaEye, FaEyeSlash, FaUsers } from 'react-icons/fa';
 // Styles
 import styles from './CustomCardRoom.module.css'
 // Interfaces
@@ -27,7 +26,7 @@ function CustomCardRoom({ item, onClick, onClickIcon }: Props) {
           <div className={styles.InfoCard}>
             <p className={styles.title}>{item.type} - {item.number}</p>
             <p><FaDollarSign /> {item.base_price} - {item.tax}</p>
-            <p><MdLocationPin /> {item.address} - {item.city}</p>
+            <p><FaUsers /> {item.number_guests} Huespedes</p>
           </div>
           <div className={styles.buttonSection}>
             {item.available

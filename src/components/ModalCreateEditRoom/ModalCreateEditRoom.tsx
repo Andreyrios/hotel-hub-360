@@ -116,7 +116,18 @@ function ModalCreateEditRoom({ show, onHide, title, dataRoomProps, mainClick }: 
                 type='number'
                 textLabel='Habitación'
                 value={`${dataRoom.number}`}
-                placeholder='Número de Habitación'
+                placeholder='Nro Habitación'
+                disabled={dataRoomProps ? !isEdit : false}
+                onChange={(e) => handleChange(e.target.name, e.target.value)}
+              />
+            </div>
+            <div className={styles.containerInputSmall}>
+              <CustomInput
+                type='number'
+                name='number_guests'
+                textLabel='Huespedes'
+                value={`${dataRoom.number_guests}`}
+                placeholder='Cantidad de huespedes'
                 disabled={dataRoomProps ? !isEdit : false}
                 onChange={(e) => handleChange(e.target.name, e.target.value)}
               />
@@ -143,30 +154,7 @@ function ModalCreateEditRoom({ show, onHide, title, dataRoomProps, mainClick }: 
                 onChange={(e) => handleChange(e.target.name, e.target.value)}
               />
             </div>
-            <div className={styles.containerInputBig}>
-              <CustomInput
-                type='text'
-                name='address'
-                textLabel='Dirección'
-                value={dataRoom.address}
-                placeholder='Ingresa la Dirección'
-                disabled={dataRoomProps ? !isEdit : false}
-                onChange={(e) => handleChange(e.target.name, e.target.value)}
-              />
-            </div>
-            <div className={styles.containerInputBig}>
-              <CustomInput
-                type='text'
-                name='city'
-                textLabel='Ciudad'
-                value={dataRoom.city}
-                placeholder='Ingresa la Ciudad'
-                disabled={dataRoomProps ? !isEdit : false}
-                onChange={(e) => handleChange(e.target.name, e.target.value)}
-              />
-            </div>
 
-            {/* <div className={styles.containerInputBig}> */}
             <CustomInput
               isTextArea
               type='text'
@@ -177,7 +165,6 @@ function ModalCreateEditRoom({ show, onHide, title, dataRoomProps, mainClick }: 
               disabled={dataRoomProps ? !isEdit : false}
               onChange={(e) => handleChange(e.target.name, e.target.value)}
             />
-            {/* </div> */}
 
             {isEdit &&
               <div className={styles.containerButtons}>
