@@ -10,6 +10,7 @@ import Loader from "./components/Loader/Loader";
 // Views
 import Main from "./views/Main/Main";
 import Login from "./views/Login/Login";
+import NotFound404 from "./views/404/404";
 import RoomsList from "./views/RoomsList/RoomsList";
 import HotelsList from "./views/HotelsList/HotelsList";
 import BookingsList from "./views/BookingsList/BookingsList";
@@ -50,7 +51,7 @@ function App() {
           }>
         </Route>
         <Route path={pathName.login} element={<Login />} />
-        <Route path='*' element={<p>No se encontró la url</p>} />
+        <Route path='*' element={<NotFound404 />} />
       </Routes>
       <Footer />
     </BrowserRouter>
