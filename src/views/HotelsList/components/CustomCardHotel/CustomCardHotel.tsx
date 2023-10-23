@@ -37,13 +37,13 @@ function CustomCardHotel({ item, onClick, onClickIcon }: Props) {
           {userReducer.user.permissions.includes(USERS_PERMISSIONS.admin) &&
             <div className={styles.buttonSection}>
               {item.available
-                ? <FaEye className={styles.icon}
+                ? <FaEye className={styles.icon} title="Deshabilitar"
                   onClick={(e) => {
                     e.preventDefault()
                     if (onClickIcon) onClickIcon()
                   }}
                 />
-                : <FaEyeSlash className={styles.icon}
+                : <FaEyeSlash className={styles.icon} title="Habilitar"
                   onClick={(e) => {
                     e.preventDefault()
                     if (onClickIcon) onClickIcon()

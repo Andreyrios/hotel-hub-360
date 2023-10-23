@@ -4,7 +4,7 @@ import styles from './ModalDetailBooking.module.css'
 import { FaTimes } from 'react-icons/fa';
 import Modal from 'react-bootstrap/Modal';
 // Interfaces
-import { ItemBooking, ItemUser } from '../../interfaces/generalInterfaces';
+import { ItemBooking } from '../../interfaces/generalInterfaces';
 // Components
 import TitleView from '../TitleView/TitleView';
 import ContainerTitleView from '../ContainerTitleView/ContainerTitleView';
@@ -14,12 +14,11 @@ import { dateFormater } from '../../utils/dateFormater';
 
 interface Props {
   show: boolean
-  users: ItemUser[]
   onHide: () => void
   dataBooking: ItemBooking
 }
 
-function ModalDetailBooking({ show, onHide, dataBooking, users }: Props) {
+function ModalDetailBooking({ show, onHide, dataBooking }: Props) {
 
   return (
     <>

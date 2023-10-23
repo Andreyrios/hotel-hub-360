@@ -20,7 +20,6 @@ function BookingsList() {
   const navigate = useNavigate();
 
   const {
-    users,
     booking,
     loading,
     listBookings,
@@ -37,9 +36,8 @@ function BookingsList() {
   return (
     <div className={styles.main}>
       <Loader show={loading} />
-      {JSON.stringify(booking) !== '{}' && booking && users?.length !== 0 && users &&
+      {JSON.stringify(booking) !== '{}' && booking &&
         <ModalDetailBooking
-          users={users}
           dataBooking={booking}
           show={isModalDetailBooking}
           onHide={() => setIsModalDetailBooking(false)}

@@ -3,19 +3,19 @@ import { useEffect, useState } from "react";
 import styles from "./CustomerView.module.css"
 // Components
 import Loader from "../../components/Loader/Loader";
+import FormSearch from "./components/FormSearch/FormSearch";
 import TitleView from "../../components/TitleView/TitleView";
 import ContainerList from "../../components/ContainerList/ContainerList";
 import CustomCardHotelRoom from "./components/CustomCardHotelRoom/CustomCardHotelRoom";
 import CustomCardHotel from "../HotelsList/components/CustomCardHotel/CustomCardHotel";
 import ContainerTitleView from "../../components/ContainerTitleView/ContainerTitleView";
+import ModalDetailRoomToBooking from "../../components/ModalDetailRoomToBooking/ModalDetailRoomToBooking";
 // Custom Hooks
 import useHotels from "../../hooks/useHotels";
 import useCustomerBooking from "../../hooks/useCustomerBooking";
 // Interfaces
 import { ItemHotel, ItemRoom, QuerySearch } from "../../interfaces/generalInterfaces";
-import FormSearch from "./components/FormSearch/FormSearch";
-// Utils
-import ModalDetailRoomToBooking from "../../components/ModalDetailRoomToBooking/ModalDetailRoomToBooking";
+// Libraries
 import { FaArrowLeft } from "react-icons/fa";
 
 function CustomerView() {
