@@ -30,13 +30,13 @@ function CustomCardRoom({ item, onClick, onClickIcon }: Props) {
           </div>
           <div className={styles.buttonSection}>
             {item.available
-              ? <FaEye className={styles.icon}
+              ? <FaEye className={styles.icon} title="Deshabilitar"
                 onClick={(e) => {
                   e.preventDefault()
                   onClickIcon()
                 }}
               />
-              : <FaEyeSlash className={styles.icon}
+              : <FaEyeSlash className={styles.icon} title="Habilitar"
                 onClick={(e) => {
                   e.preventDefault()
                   onClickIcon()
