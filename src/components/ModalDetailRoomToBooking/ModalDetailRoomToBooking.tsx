@@ -23,11 +23,26 @@ interface Props {
   querySearch: QuerySearch
   apiCreateCustomerBooking: (dataToSend: ItemBooking) => void
 }
+const OPTIONS_TYPE_DOCUMENTS = [
+  { value: 'TI', text: 'Tarjeta Identidad' },
+  { value: 'CC', text: 'Cédula de ciudadanía' },
+  { value: 'Passport', text: 'Pasaporte' },
+]
+
+const OPTIONS_GENDER = [
+  { value: 'female', text: 'Femenino' },
+  { value: 'male', text: 'Masculino' },
+  { value: 'other', text: 'Otro' },
+]
 
 function ModalDetailRoomToBooking({ show, onHide, data, querySearch, apiCreateCustomerBooking, dataHotel }: Props) {
   const today = new Date().toISOString().substr(0, 10);
   const [comments, setComments] = useState('')
   const [guestsList, setGuestsList] = useState<ItemUser[]>([])
+  const [emergencyContact, setEmergencyContact] = useState<{ phone: string, fullName: string }>({
+    phone: '',
+    fullName: ''
+  })
   const [dataGuest, setDataGuest] = useState<ItemUser>({
     dni: '',
     email: '',
@@ -41,21 +56,42 @@ function ModalDetailRoomToBooking({ show, onHide, data, querySearch, apiCreateCu
 
   useEffect(() => {
     setGuestsList([])
+    setEmergencyContact({
+      phone: '',
+      fullName: ''
+    })
   }, [show])
 
   const handleClick = () => {
-    const { dni, email, last_name, birth_date, first_name, document_type } = dataGuest
+    const { dni, email, last_name, birth_date, first_name, document_type, phone } = dataGuest
 
-    if (dni === '' || email === '' || last_name === '' || birth_date === '' || first_name === '' || document_type === '') {
-      alertInformation({
-        title: '',
-        icon: 'warning',
-        color: 'var(--COLOR-WARNING)',
-        message: 'Completa todos los campos obligatorios antes de continuar.',
+    if (guestsList.length < +data.number_guests) {
+      if (dni === '' || email === '' || last_name === '' || birth_date === '' || first_name === '' || document_type === '') {
+        alertInformation({
+          title: '',
+          icon: 'warning',
+          color: 'var(--COLOR-WARNING)',
+          message: 'Completa todos los campos obligatorios antes de continuar.',
+        })
+        return
+      }
+      setGuestsList((prevGuestsList) => [...prevGuestsList, dataGuest]);
+    } else {
+      if (last_name === '' || first_name === '' || phone === '') {
+        alertInformation({
+          title: '',
+          icon: 'warning',
+          color: 'var(--COLOR-WARNING)',
+          message: 'Completa todos los campos obligatorios antes de continuar.',
+        })
+        return
+      }
+      setEmergencyContact({
+        phone: dataGuest.phone,
+        fullName: `${dataGuest.first_name} ${dataGuest.last_name}`,
       })
-      return
     }
-    setGuestsList((prevGuestsList) => [...prevGuestsList, dataGuest]);
+
     setDataGuest({
       dni: '',
       email: '',
@@ -64,7 +100,7 @@ function ModalDetailRoomToBooking({ show, onHide, data, querySearch, apiCreateCu
       last_name: '',
       birth_date: '',
       first_name: '',
-      document_type: '',
+      document_type,
     });
   };
 
@@ -72,9 +108,16 @@ function ModalDetailRoomToBooking({ show, onHide, data, querySearch, apiCreateCu
     setDataGuest((prevDataGuest) => ({ ...prevDataGuest, [name]: value }));
   };
 
-  const handleDelete = (index: number) => {
-    const updatedGuestsList = guestsList.filter((_, i) => i !== index);
-    setGuestsList(updatedGuestsList);
+  const handleDelete = (index?: number) => {
+    if (index || index === 0) {
+      const updatedGuestsList = guestsList.filter((_, i) => i !== index);
+      setGuestsList(updatedGuestsList);
+    } else {
+      setEmergencyContact({
+        phone: '',
+        fullName: ''
+      })
+    }
   };
 
   const handleClickBooking = () => {
@@ -92,6 +135,7 @@ function ModalDetailRoomToBooking({ show, onHide, data, querySearch, apiCreateCu
       checkOut: querySearch.checkOut,
       hotel_name: `${dataHotel?.name}`,
       number_guests: guestsList.length,
+      emergency_contact: emergencyContact,
       list_guests: JSON.stringify(guestsList),
       user_name: `${guestsList[0].first_name} ${guestsList[0].last_name}`,
     }
@@ -152,7 +196,11 @@ function ModalDetailRoomToBooking({ show, onHide, data, querySearch, apiCreateCu
                     )
                   })}
                 </div>
-                {guestsList.length < +data.number_guests &&
+                {guestsList.length === +data.number_guests && emergencyContact.fullName === '' &&
+                  <h4> Contacto de mergencia</h4>
+                }
+
+                {(emergencyContact.fullName === '' || guestsList.length < +data.number_guests) &&
                   <form className={styles.form}>
                     <div className={styles.containerInput}>
                       <CustomInput
@@ -174,67 +222,63 @@ function ModalDetailRoomToBooking({ show, onHide, data, querySearch, apiCreateCu
                         onChange={(e) => handleChange(e.target.name, e.target.value)}
                       />
                     </div>
-                    <div className={styles.containerInput}>
-                      <CustomInput
-                        type='date'
-                        name='birth_date'
-                        textLabel='Fecha de Nacimiento'
-                        value={dataGuest.birth_date}
-                        placeholder=''
-                        onChange={(e) => handleChange(e.target.name, e.target.value)}
-                      />
-                    </div>
-                    <div className={styles.containerInput}>
-                      <CustomInput
-                        name='gender'
-                        placeholder=''
-                        isSelectOption
-                        textLabel='Género'
-                        value={dataGuest.gender}
-                        onChange={(e) => handleChange(e.target.name, e.target.value)}
-                        options={[
-                          { value: 'female', text: 'Femenino' },
-                          { value: 'male', text: 'Masculino' },
-                          { value: 'other', text: 'Otro' },
-                        ]}
-                      />
-                    </div>
-                    <div className={styles.containerInput}>
-                      <CustomInput
-                        name='document_type'
-                        placeholder=''
-                        isSelectOption
-                        textLabel='Tipo de documento'
-                        value={dataGuest.document_type}
-                        onChange={(e) => handleChange(e.target.name, e.target.value)}
-                        options={[
-                          { value: 'TI', text: 'Tarjeta Identidad' },
-                          { value: 'CC', text: 'Cédula de ciudadanía' },
-                          { value: 'Passport', text: 'Pasaporte' },
-                        ]}
-                      />
-                    </div>
-                    <div className={styles.containerInput}>
-                      <CustomInput
-                        name='dni'
-                        type='number'
-                        value={`${dataGuest.dni}`}
-                        textLabel='Número de documento'
-                        placeholder='Ingresa número documento'
-                        onChange={(e) => handleChange(e.target.name, e.target.value)}
-                      />
-                    </div>
+                    {guestsList.length < +data.number_guests &&
+                      <>
+                        <div className={styles.containerInput}>
+                          <CustomInput
+                            type='date'
+                            name='birth_date'
+                            textLabel='Fecha de Nacimiento'
+                            value={dataGuest.birth_date}
+                            placeholder=''
+                            onChange={(e) => handleChange(e.target.name, e.target.value)}
+                          />
+                        </div>
+                        <div className={styles.containerInput}>
+                          <CustomInput
+                            name='gender'
+                            placeholder=''
+                            isSelectOption
+                            textLabel='Género'
+                            value={dataGuest.gender}
+                            onChange={(e) => handleChange(e.target.name, e.target.value)}
+                            options={OPTIONS_GENDER}
+                          />
+                        </div>
+                        <div className={styles.containerInput}>
+                          <CustomInput
+                            name='document_type'
+                            placeholder=''
+                            isSelectOption
+                            textLabel='Tipo de documento'
+                            value={dataGuest.document_type}
+                            onChange={(e) => handleChange(e.target.name, e.target.value)}
+                            options={OPTIONS_TYPE_DOCUMENTS}
+                          />
+                        </div>
+                        <div className={styles.containerInput}>
+                          <CustomInput
+                            name='dni'
+                            type='number'
+                            value={`${dataGuest.dni}`}
+                            textLabel='Número de documento'
+                            placeholder='Ingresa número documento'
+                            onChange={(e) => handleChange(e.target.name, e.target.value)}
+                          />
+                        </div>
 
-                    <div className={styles.containerInput}>
-                      <CustomInput
-                        name='email'
-                        type='email'
-                        textLabel='Email'
-                        value={`${dataGuest.email}`}
-                        placeholder='Ingresa Correo electrónico'
-                        onChange={(e) => handleChange(e.target.name, e.target.value)}
-                      />
-                    </div>
+                        <div className={styles.containerInput}>
+                          <CustomInput
+                            name='email'
+                            type='email'
+                            textLabel='Email'
+                            value={`${dataGuest.email}`}
+                            placeholder='Ingresa Correo electrónico'
+                            onChange={(e) => handleChange(e.target.name, e.target.value)}
+                          />
+                        </div>
+                      </>
+                    }
 
                     <div className={styles.containerInput}>
                       <CustomInput
@@ -255,7 +299,18 @@ function ModalDetailRoomToBooking({ show, onHide, data, querySearch, apiCreateCu
                     </Button>
                   </form>
                 }
-                {guestsList.length === +data.number_guests &&
+
+                {emergencyContact.fullName !== '' &&
+                  <div>
+                    <h4>Contacto de mergencia</h4>
+                    <div onClick={() => handleDelete()} className={styles.addedUser}>
+                      <span>{emergencyContact.fullName} - {emergencyContact.phone}</span>
+                      <FaTimes />
+                    </div>
+                  </div>
+                }
+
+                {guestsList.length === +data.number_guests && emergencyContact.fullName !== '' &&
                   <>
                     <CustomInput
                       isTextArea
@@ -279,7 +334,7 @@ function ModalDetailRoomToBooking({ show, onHide, data, querySearch, apiCreateCu
           </div>
 
         </Modal.Body>
-      </Modal>
+      </Modal >
     </>
   )
 }

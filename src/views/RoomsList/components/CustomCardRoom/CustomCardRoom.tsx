@@ -28,20 +28,16 @@ function CustomCardRoom({ item, onClick, onClickIcon }: Props) {
             <p><FaDollarSign /> {item.base_price} - {item.tax}</p>
             <p><FaUsers /> {item.number_guests} Huespedes</p>
           </div>
-          <div className={styles.buttonSection}>
+          <div
+            className={styles.buttonSection}
+            onClick={(e) => {
+              e.preventDefault()
+              onClickIcon()
+            }}
+          >
             {item.available
-              ? <FaEye className={styles.icon} title="Deshabilitar"
-                onClick={(e) => {
-                  e.preventDefault()
-                  onClickIcon()
-                }}
-              />
-              : <FaEyeSlash className={styles.icon} title="Habilitar"
-                onClick={(e) => {
-                  e.preventDefault()
-                  onClickIcon()
-                }}
-              />
+              ? "Deshabilitar"
+              : "Habilitar"
             }
           </div>
         </div>

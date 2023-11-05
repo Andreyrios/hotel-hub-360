@@ -20,28 +20,31 @@ function CardBooking({ item, onClick }: Props) {
 
   return (
     <>
-      {checkOut > today &&
-        <div className={`p-1 ${styles.cardComplete}`}>
-          <div
-            onClick={onClick}
-            title={dateFormater(item.created_at)}
-            className={`${styles.customCard} card`}
-            style={{
-              background: checkIn <= today && checkOut >= today
-                ? '#ffd70059'
-                : '#00800040'
-            }}
-          >
-            <div className={styles.InfoCard}>
-              <p className={styles.title}>{item.user_name}</p>
-              <p className={styles.title}>{dateFormater(item.created_at)}</p>
-              <p><FaMoneyBillAlt /> {cashFormatter(item.price)}</p>
-              <p><FaSignInAlt /> {dateFormater(checkIn)}</p>
-              <p><FaSignOutAlt /> {dateFormater(checkOut)}</p>
-            </div>
+      {/* {checkOut > today && */}
+      <div className={`p-1 ${styles.cardComplete}`}>
+        <div
+          onClick={onClick}
+          title={dateFormater(item.created_at)}
+          className={`${styles.customCard} card`}
+          style={{
+            background:
+              checkOut < today ?
+                '#f3c8c8' :
+                checkIn <= today && checkOut >= today
+                  ? '#ffd70059'
+                  : '#00800040'
+          }}
+        >
+          <div className={styles.InfoCard}>
+            <p className={styles.title}>{item.user_name}</p>
+            <p className={styles.title}>{dateFormater(item.created_at)}</p>
+            <p><FaMoneyBillAlt /> {cashFormatter(item.price)}</p>
+            <p><FaSignInAlt /> {dateFormater(checkIn)}</p>
+            <p><FaSignOutAlt /> {dateFormater(checkOut)}</p>
           </div>
         </div>
-      }
+      </div>
+      {/* } */}
     </>
   )
 }

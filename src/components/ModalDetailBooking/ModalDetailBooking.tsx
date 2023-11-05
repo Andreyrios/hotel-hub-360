@@ -96,6 +96,17 @@ function ModalDetailBooking({ show, onHide, dataBooking }: Props) {
                   )
                 })}
               </div>
+              <h4>Contacto de emergencia</h4>
+              <div className={styles.user}>
+                <div className={styles.containerData}>
+                  <p className={styles.label}>Nombre y apellido</p>
+                  <p className={styles.data}>{dataBooking.emergency_contact.fullName}</p>
+                </div>
+                <div className={styles.containerData}>
+                  <p className={styles.label}>Teléfono</p>
+                  <p className={styles.data}>{dataBooking.emergency_contact.phone}</p>
+                </div>
+              </div>
             </div>
           </div>
 
