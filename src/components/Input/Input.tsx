@@ -52,7 +52,7 @@ function CustomInput(props: Props) {
             name={props.name}
             className={styles.customSelect}
             onChange={(e) => props.onChange(e)}>
-            <option value="default">Selecciona una opción</option>
+            <option value="">Selecciona una opción</option>
             {props.options?.map((item: ItemOption, index) => {
               return (
                 <option key={index} value={item.value}>{item.text}</option>

@@ -1,6 +1,6 @@
 // Libraries
 import { MdLocationPin } from 'react-icons/md';
-import { FaEye, FaEyeSlash, FaPhone } from 'react-icons/fa';
+import { FaPhone } from 'react-icons/fa';
 // Styles
 import styles from './CustomCardHotel.module.css'
 // Interfaces
@@ -35,24 +35,19 @@ function CustomCardHotel({ item, onClick, onClickIcon }: Props) {
             <p><MdLocationPin /> {item.address} - {item.city}</p>
           </div>
           {userReducer.user.permissions.includes(USERS_PERMISSIONS.admin) &&
-            <div className={styles.buttonSection}>
+            <div
+              className={styles.buttonSection}
+              onClick={(e) => {
+                e.preventDefault()
+                if (onClickIcon) onClickIcon()
+              }}
+            >
               {item.available
-                ? <FaEye className={styles.icon} title="Deshabilitar"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    if (onClickIcon) onClickIcon()
-                  }}
-                />
-                : <FaEyeSlash className={styles.icon} title="Habilitar"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    if (onClickIcon) onClickIcon()
-                  }}
-                />
+                ? 'Deshabilitar'
+                : 'Habilitar'
               }
             </div>
           }
-
         </div>
       </div>
     </>

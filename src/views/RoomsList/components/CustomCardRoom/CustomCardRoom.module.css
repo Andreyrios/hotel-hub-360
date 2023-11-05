@@ -57,22 +57,11 @@
 
 .buttonSection {
   display: flex;
-  font-size: 2rem;
-  justify-content: center;
-}
-
-.icon {
-  margin: 3px;
-  cursor: pointer;
-  padding: 0.2rem;
-  transition: transform 0.3s;
-  color: var(--PRIMARY-COLOR);
-}
-
-.icon:hover {
   color: white;
-  border-radius: 7px;
-  transform: scale(1.1);
+  font-size: 1rem;
+  padding: 0.5rem 0;
+  justify-content: center;
+  font-family: var(--FONT-BOLD);
   background: var(--SECONDARY-COLOR);
 }
 
