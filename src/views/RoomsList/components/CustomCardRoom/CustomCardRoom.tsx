@@ -1,5 +1,5 @@
 // Libraries
-import { FaDollarSign, FaEye, FaEyeSlash, FaUsers } from 'react-icons/fa';
+import { FaDollarSign, FaUsers } from 'react-icons/fa';
 // Styles
 import styles from './CustomCardRoom.module.css'
 // Interfaces
